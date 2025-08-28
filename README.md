@@ -16,7 +16,7 @@ sólidos. Muitas pessoas ainda têm dúvidas sobre em qual lixeira descartar cor
 
 ## 2. Protótipo Inicial
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Os protótipos foram desenvolvidos pelo software Figma, sendo criadas
-wireframes simples das telas para o site
+wireframes simples das telas
 
 ### Tela inicial – Tipos de lixo: Mostra informações sobre cada categoria de lixo (plástico, papel, vidro, metal e orgânico).
 
