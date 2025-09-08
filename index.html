@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReciclaWeb</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <a href="#" class="logo" onclick="showScreen('home')">
+                ♻️ ReciclaWeb
+            </a>
+            
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                ☰
+            </button>
+            
+            <nav class="nav" id="mainNav">
+                <a href="#" class="nav-link active" aria-current="page" role="button" onclick="showScreen('home')">
+                    🏠 Home
+                </a>
+                <a href="#" class="nav-link" role="button" onclick="showScreen('game')">
+                    🎮 Jogue Agora
+                </a>
+                <a href="#" class="nav-link" role="button" onclick="showScreen('team')">
+                    👥 Equipe
+                </a>
+            </nav>
+        </header>
+
+        <main id="mainContent">
+        <!-- TELA HOME -->
+        <div id="home" class="screen home-screen active" role="main">
+            <section class="section">
+                <h1 class="section-title">🗂️ Conheça os Tipos de Lixo</h1>
+                <p class="section-subtitle">
+                    Navegue pelas categorias e aprenda a separar corretamente cada resíduo para contribuir com um planeta mais sustentável
+                </p>
+                
+                <div class="carousel-container">
+                    <button class="carousel-nav prev" type="button" aria-label="Slide anterior" onclick="previousSlide()">‹</button>
+                    <button class="carousel-nav next" type="button" aria-label="Próximo slide" onclick="nextSlide()">›</button>
+                    
+                    <div class="carousel-wrapper">
+                        <!-- Slide Plástico -->
+                        <div class="lixo-card plastico" id="slide-0">
+                            <div class="lixo-icon plastico">🥤</div>
+                            <h3 class="lixo-title" style="color: #F44336;">PLÁSTICO - LIXEIRA VERMELHA</h3>
+                            <p class="lixo-description">
+                                Garrafas PET, embalagens de produtos de limpeza, sacolas plásticas, 
+                                potes de iogurte, tampas de refrigerante, brinquedos quebrados.
+                            </p>
+                            <div class="lixo-tip">
+                                💡 <strong>Dica:</strong> Lave as embalagens antes de descartar para evitar contaminação!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="indicators">
+                        <span class="indicator active" onclick="goToSlide(0)"></span>
+                        <span class="indicator" onclick="goToSlide(1)"></span>
+                        <span class="indicator" onclick="goToSlide(2)"></span>
+                        <span class="indicator" onclick="goToSlide(3)"></span>
+                        <span class="indicator" onclick="goToSlide(4)"></span>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h3 style="color: #2E7D32; margin-bottom: 1rem;">Pronto para testar seus conhecimentos?</h3>
+                    <p style="margin-bottom: 1.5rem;">Agora que você aprendeu sobre os tipos de resíduos, que tal um desafio divertido?</p>
+                    <button class="btn" onclick="showScreen('game')">
+                        🎯 Jogar Agora!
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <!-- TELA JOGO -->
+        <div id="game" class="screen game-screen" role="main">
+            <section class="section">
+                <h1 class="section-title" id="gameTitle">🎯 Desafio da Separação</h1>
+                <p class="section-subtitle">
+                    Teste seus conhecimentos! Arraste cada resíduo para a lixeira correta e ganhe pontos
+                </p>
+                
+                <div class="game-container">
+                    <div class="score-board">
+                        <div class="score">
+                            <span>Pontuação: <strong>0 / 10</strong></span>
+                            <span>⭐</span>
+                        </div>
+                        <p style="margin-top: 0.5rem; color: #666;">Acerte o máximo de separações possíveis!</p>
+                    </div>
+                    
+                    <div class="game-area">
+                        <h3 style="color: #2E7D32; margin-bottom: 1rem;">Item Atual</h3>
+                        
+                        <div class="current-item">
+                            <div class="trash-item" id="currentTrash">🍌</div>
+                            <p style="margin-top: 1rem; color: #666; font-size: 1.1rem;">
+                                <strong>Arraste</strong> o item acima para a lixeira correta ⬇️
+                            </p>
+                        </div>
+                        
+                        <div class="bins-container">
+                            <div class="bin plastico" data-type="plastico">
+                                <div class="bin-icon">🥤</div>
+                                <div class="bin-label">PLÁSTICO</div>
+                            </div>
+                            <div class="bin papel" data-type="papel">
+                                <div class="bin-icon">📄</div>
+                                <div class="bin-label">PAPEL</div>
+                            </div>
+                            <div class="bin vidro" data-type="vidro">
+                                <div class="bin-icon">🍶</div>
+                                <div class="bin-label">VIDRO</div>
+                            </div>
+                            <div class="bin metal" data-type="metal">
+                                <div class="bin-icon">🥫</div>
+                                <div class="bin-label">METAL</div>
+                            </div>
+                            <div class="bin organico" data-type="organico">
+                                <div class="bin-icon">🍌</div>
+                                <div class="bin-label">ORGÂNICO</div>
+                            </div>
+                        </div>
+
+                        <div class="game-controls">
+                            <button class="btn-secondary" type="button" onclick="newItem()">
+                                🔄 Novo Item
+                            </button>
+                            <button class="btn-secondary" type="button" onclick="showStats()">
+                                📊 Estatísticas
+                            </button>
+                            <button class="btn" type="button" onclick="showScreen('home')">
+                                🏠 Voltar ao Início
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- TELA EQUIPE -->
+        <div id="team" class="screen team-screen" role="main">
+            <section class="section">
+                <div class="team-intro">
+                    <h1 class="section-title" id="teamTitle">👥 Nossa Equipe</h1>
+                    <p class="section-subtitle">
+                        Conheça os desenvolvedores apaixonados por sustentabilidade que criaram o ReciclaWeb
+                    </p>
+                    <div class="team-quote">
+                        "Juntos por uma educação ambiental mais acessível e divertida para toda a comunidade!"
+                    </div>
+                </div>
+
+                <div class="team-members">
+                    <div class="member-card">
+                        <div class="member-avatar">👨‍💻</div>
+                        <div class="member-name">[Seu Nome]</div>
+                        <div class="member-ra">RA: [Seu RA]</div>
+                        <div class="member-role">Frontend Developer</div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-avatar">👩‍💻</div>
+                        <div class="member-name">[Nome do Colega]</div>
+                        <div class="member-ra">RA: [RA do Colega]</div>
+                        <div class="member-role">UX/UI Designer</div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-avatar">👨‍🎓</div>
+                        <div class="member-name">[Nome do Colega]</div>
+                        <div class="member-ra">RA: [RA do Colega]</div>
+                        <div class="member-role">JavaScript Developer</div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-avatar">👩‍🔬</div>
+                        <div class="member-name">[Nome do Colega]</div>
+                        <div class="member-ra">RA: [RA do Colega]</div>
+                        <div class="member-role">Content Manager</div>
+                    </div>
+                </div>
+
+                <div class="project-info">
+                    <h3>📋 Informações do Projeto</h3>
+                    
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <strong>🎓 Disciplina:</strong>
+                            [Nome da Disciplina]
+                        </div>
+                        <div class="project-detail">
+                            <strong>👨‍🏫 Professor:</strong>
+                            [Nome do Professor]
+                        </div>
+                        <div class="project-detail">
+                            <strong>📅 Semestre:</strong>
+                            2024.2
+                        </div>
+                        <div class="project-detail">
+                            <strong>🌍 Caráter:</strong>
+                            Extensionista
+                        </div>
+                    </div>
+
+                    <div class="project-mission">
+                        <h4 style="color: #2E7D32; margin-bottom: 1rem;">🎯 Missão do Projeto</h4>
+                        <p style="font-size: 1.1rem; line-height: 1.8;">
+                            Promover <strong>educação ambiental</strong> através de tecnologia acessível e interativa, 
+                            contribuindo para formar uma comunidade mais consciente sobre a importância da 
+                            <strong>coleta seletiva</strong> e do <strong>descarte responsável de resíduos</strong>.
+                        </p>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <p style="margin-bottom: 1rem; color: #666;">
+                            <strong>📂 Código Aberto:</strong> Nosso projeto está disponível para toda a comunidade
+                        </p>
+                        <a href="#" class="github-link">
+                            🔗 Acessar Repositório GitHub
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+
+</body>
+</html>
