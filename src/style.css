@@ -92,6 +92,13 @@ body {
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* ========================================
@@ -160,19 +167,34 @@ body {
 
 .carousel-wrapper {
     position: relative;
-    min-height: 400px;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .lixo-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     padding: 2rem;
     border-radius: 15px;
     background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
     border: 3px solid;
-    margin: 1rem;
+    width: 100%;
+    max-width: 600px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lixo-card.active {
+    opacity: 1;
 }
 
 .lixo-card.plastico { 
@@ -244,6 +266,7 @@ body {
     color: #555;
     margin-bottom: 1.5rem;
     line-height: 1.8;
+    flex-grow: 1;
 }
 
 .lixo-tip {
@@ -277,11 +300,11 @@ body {
 }
 
 .carousel-nav.prev { 
-    left: -30px; 
+    left: 10px; 
 }
 
 .carousel-nav.next { 
-    right: -30px; 
+    right: 10px; 
 }
 
 .indicators {
@@ -715,6 +738,16 @@ body {
         padding: 2rem 1.5rem;
     }
 
+    .carousel-wrapper {
+        min-height: 450px;
+    }
+
+    .lixo-card {
+        min-height: 400px;
+        padding: 1.5rem;
+        max-width: 500px;
+    }
+
     .lixo-icon {
         width: 100px;
         height: 100px;
@@ -777,6 +810,16 @@ body {
         margin: 0 0.5rem;
     }
 
+    .carousel-wrapper {
+        min-height: 400px;
+    }
+
+    .lixo-card {
+        min-height: 350px;
+        padding: 1rem;
+        max-width: 400px;
+    }
+
     .lixo-icon {
         width: 80px;
         height: 80px;
@@ -794,11 +837,11 @@ body {
     }
 
     .carousel-nav.prev { 
-        left: -20px; 
+        left: 5px; 
     }
 
     .carousel-nav.next { 
-        right: -20px; 
+        right: 5px; 
     }
 
     .bins-container {

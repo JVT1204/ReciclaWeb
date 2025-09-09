@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReciclaWeb</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div class="container">
@@ -26,7 +26,7 @@
                     🎮 Jogue Agora
                 </a>
                 <a href="#" class="nav-link" role="button" onclick="showScreen('team')">
-                    👥 Equipe
+                    👥 Desenvolvedores
                 </a>
             </nav>
         </header>
@@ -45,18 +45,7 @@
                     <button class="carousel-nav next" type="button" aria-label="Próximo slide" onclick="nextSlide()">›</button>
                     
                     <div class="carousel-wrapper">
-                        <!-- Slide Plástico -->
-                        <div class="lixo-card plastico" id="slide-0">
-                            <div class="lixo-icon plastico">🥤</div>
-                            <h3 class="lixo-title" style="color: #F44336;">PLÁSTICO - LIXEIRA VERMELHA</h3>
-                            <p class="lixo-description">
-                                Garrafas PET, embalagens de produtos de limpeza, sacolas plásticas, 
-                                potes de iogurte, tampas de refrigerante, brinquedos quebrados.
-                            </p>
-                            <div class="lixo-tip">
-                                💡 <strong>Dica:</strong> Lave as embalagens antes de descartar para evitar contaminação!
-                            </div>
-                        </div>
+                        <!-- Slides serão criados dinamicamente pelo JavaScript -->
                     </div>
                     
                     <div class="indicators">
@@ -107,23 +96,18 @@
                         
                         <div class="bins-container">
                             <div class="bin plastico" data-type="plastico">
-                                <div class="bin-icon">🥤</div>
                                 <div class="bin-label">PLÁSTICO</div>
                             </div>
                             <div class="bin papel" data-type="papel">
-                                <div class="bin-icon">📄</div>
                                 <div class="bin-label">PAPEL</div>
                             </div>
                             <div class="bin vidro" data-type="vidro">
-                                <div class="bin-icon">🍶</div>
                                 <div class="bin-label">VIDRO</div>
                             </div>
                             <div class="bin metal" data-type="metal">
-                                <div class="bin-icon">🥫</div>
                                 <div class="bin-label">METAL</div>
                             </div>
                             <div class="bin organico" data-type="organico">
-                                <div class="bin-icon">🍌</div>
                                 <div class="bin-label">ORGÂNICO</div>
                             </div>
                         </div>
@@ -148,9 +132,9 @@
         <div id="team" class="screen team-screen" role="main">
             <section class="section">
                 <div class="team-intro">
-                    <h1 class="section-title" id="teamTitle">👥 Nossa Equipe</h1>
+                    <h1 class="section-title" id="teamTitle">👥 Desenvolvedores</h1>
                     <p class="section-subtitle">
-                        Conheça os desenvolvedores apaixonados por sustentabilidade que criaram o ReciclaWeb
+                        Conheça quem pensou e criou o ReciclaWeb
                     </p>
                     <div class="team-quote">
                         "Juntos por uma educação ambiental mais acessível e divertida para toda a comunidade!"
@@ -160,32 +144,17 @@
                 <div class="team-members">
                     <div class="member-card">
                         <div class="member-avatar">👨‍💻</div>
-                        <div class="member-name">[Seu Nome]</div>
-                        <div class="member-ra">RA: [Seu RA]</div>
+                        <div class="member-name">João Vitor Tortorello</div>
+                        <div class="member-ra">RA: 10402674</div>
                         <div class="member-role">Frontend Developer</div>
                     </div>
 
                     <div class="member-card">
                         <div class="member-avatar">👩‍💻</div>
-                        <div class="member-name">[Nome do Colega]</div>
-                        <div class="member-ra">RA: [RA do Colega]</div>
-                        <div class="member-role">UX/UI Designer</div>
+                        <div class="member-name">Eduardo Augusto Clara Olivato</div>
+                        <div class="member-ra">RA: 10738072</div>
+                        <div class="member-role">Frontend Developer</div>
                     </div>
-
-                    <div class="member-card">
-                        <div class="member-avatar">👨‍🎓</div>
-                        <div class="member-name">[Nome do Colega]</div>
-                        <div class="member-ra">RA: [RA do Colega]</div>
-                        <div class="member-role">JavaScript Developer</div>
-                    </div>
-
-                    <div class="member-card">
-                        <div class="member-avatar">👩‍🔬</div>
-                        <div class="member-name">[Nome do Colega]</div>
-                        <div class="member-ra">RA: [RA do Colega]</div>
-                        <div class="member-role">Content Manager</div>
-                    </div>
-                </div>
 
                 <div class="project-info">
                     <h3>📋 Informações do Projeto</h3>
@@ -193,15 +162,11 @@
                     <div class="project-details">
                         <div class="project-detail">
                             <strong>🎓 Disciplina:</strong>
-                            [Nome da Disciplina]
-                        </div>
-                        <div class="project-detail">
-                            <strong>👨‍🏫 Professor:</strong>
-                            [Nome do Professor]
+                            Web Mobile
                         </div>
                         <div class="project-detail">
                             <strong>📅 Semestre:</strong>
-                            2024.2
+                            2025.2
                         </div>
                         <div class="project-detail">
                             <strong>🌍 Caráter:</strong>
@@ -222,7 +187,7 @@
                         <p style="margin-bottom: 1rem; color: #666;">
                             <strong>📂 Código Aberto:</strong> Nosso projeto está disponível para toda a comunidade
                         </p>
-                        <a href="#" class="github-link">
+                        <a href="https://github.com/JVT1204/ReciclaWeb.git" class="github-link">
                             🔗 Acessar Repositório GitHub
                         </a>
                     </div>
@@ -232,7 +197,7 @@
         </main>
     </div>
     
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 
 </body>
 </html>
