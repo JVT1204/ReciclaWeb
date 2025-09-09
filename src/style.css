@@ -62,31 +62,43 @@ body {
 }
 
 .nav {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
+    display: none; /* Oculta o menu de navegação por padrão */
+    flex-direction: column; /* Sempre em coluna, para ser consistente com o mobile */
+    gap: 0.5rem; /* Espaçamento entre os links */
+    width: 100%; /* Ocupa a largura total quando visível */
+    position: absolute; /* Posicionamento para o menu suspenso */
+    top: 100%; /* Abaixo do header */
+    left: 0;
+    background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%); /* Fundo igual ao header */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 1rem 0;
+}
+
+.nav.active {
+    display: flex; /* Exibe o menu quando a classe 'active' está presente */
 }
 
 .nav-link {
     color: white;
     text-decoration: none;
     padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0; /* Remove border-radius para links de menu em coluna */
+    background: transparent; /* Fundo transparente */
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: none; /* Remove a borda padrão */
     font-weight: 500;
+    text-align: center; /* Centraliza o texto */
 }
 
 .nav-link:hover, .nav-link.active {
     background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
+    border-color: transparent; /* Remove borda em hover/active */
+    transform: none; /* Remove transformação de hover */
 }
 
 /* Menu Mobile */
 .mobile-menu-toggle {
-    display: none;
+    display: block; /* Garante que o botão do menu hambúrguer esteja sempre visível */
     background: none;
     border: none;
     color: white;
@@ -710,19 +722,7 @@ body {
     }
 
     .nav {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        gap: 0.5rem;
         margin-top: 1rem;
-    }
-
-    .nav.active {
-        display: flex;
-    }
-
-    .mobile-menu-toggle {
-        display: block;
     }
 
     .section {
