@@ -1,0 +1,944 @@
+/* ========================================
+   RECICLAWEB - ESTILOS CSS3
+   Educação Ambiental Digital
+======================================== */
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 50%, #81C784 100%);
+    min-height: 100vh;
+}
+
+/* Container Principal */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    min-height: 100vh;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+.header {
+    background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.nav {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Menu Mobile */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ========================================
+   TELAS E NAVEGAÇÃO
+======================================== */
+.screen {
+    display: none;
+    min-height: calc(100vh - 80px);
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.section {
+    padding: 3rem 2rem;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    color: #2E7D32;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    font-size: 1.3rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ========================================
+   TELA HOME
+======================================== */
+.home-screen {
+    background: linear-gradient(135deg, #F1F8E9 0%, #E8F5E8 100%);
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.carousel-wrapper {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lixo-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+    border: 3px solid;
+    margin: 1rem;
+}
+
+.lixo-card.plastico { 
+    border-color: #F44336; 
+}
+
+.lixo-card.papel { 
+    border-color: #2196F3; 
+}
+
+.lixo-card.vidro { 
+    border-color: #4CAF50; 
+}
+
+.lixo-card.metal { 
+    border-color: #FF9800; 
+}
+
+.lixo-card.organico { 
+    border-color: #795548; 
+}
+
+.lixo-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+    border: 3px solid;
+}
+
+.lixo-icon.plastico { 
+    border-color: #F44336; 
+    color: #F44336; 
+}
+
+.lixo-icon.papel { 
+    border-color: #2196F3; 
+    color: #2196F3; 
+}
+
+.lixo-icon.vidro { 
+    border-color: #4CAF50; 
+    color: #4CAF50; 
+}
+
+.lixo-icon.metal { 
+    border-color: #FF9800; 
+    color: #FF9800; 
+}
+
+.lixo-icon.organico { 
+    border-color: #795548; 
+    color: #795548; 
+}
+
+.lixo-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.lixo-description {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.lixo-tip {
+    background: #FFF3E0;
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid #FF9800;
+    font-weight: 500;
+    color: #E65100;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #4CAF50;
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.carousel-nav:hover {
+    background: #45a049;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav.prev { 
+    left: -30px; 
+}
+
+.carousel-nav.next { 
+    right: -30px; 
+}
+
+.indicators {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background: #4CAF50;
+    transform: scale(1.3);
+}
+
+.cta-section {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 15px;
+}
+
+.btn {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+}
+
+/* ========================================
+   TELA JOGO
+======================================== */
+.game-screen {
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+}
+
+.game-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.score-board {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2E7D32;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.game-area {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.current-item {
+    margin: 2rem 0;
+}
+
+.trash-item {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #FFE0B2 0%, #FFCC80 100%);
+    border: 3px solid #FF9800;
+    border-radius: 15px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    cursor: grab;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+}
+
+.trash-item:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.trash-item:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+}
+
+.bins-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 3rem 0;
+}
+
+.bin {
+    width: 140px;
+    height: 180px;
+    border: 4px dashed;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.bin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
+    z-index: 1;
+}
+
+.bin > * {
+    position: relative;
+    z-index: 2;
+}
+
+.bin:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.bin.plastico { 
+    border-color: #F44336; 
+    background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%); 
+    color: #C62828;
+}
+
+.bin.papel { 
+    border-color: #2196F3; 
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); 
+    color: #1565C0;
+}
+
+.bin.vidro { 
+    border-color: #4CAF50; 
+    background: linear-gradient(135deg, #E8F5E8 0%, #C8E6C9 100%); 
+    color: #2E7D32;
+}
+
+.bin.metal { 
+    border-color: #FF9800; 
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); 
+    color: #F57C00;
+}
+
+.bin.organico { 
+    border-color: #795548; 
+    background: linear-gradient(135deg, #EFEBE9 0%, #D7CCC8 100%); 
+    color: #5D4037;
+}
+
+.bin-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.bin-label {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #607D8B 0%, #546E7A 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(96, 125, 139, 0.3);
+}
+
+/* ========================================
+   TELA EQUIPE
+======================================== */
+.team-screen {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+}
+
+.team-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.team-quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #5D4037;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    border-left: 4px solid #FF9800;
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.member-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: #FF9800;
+}
+
+.member-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-avatar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+    z-index: 1;
+}
+
+.member-avatar > * {
+    position: relative;
+    z-index: 2;
+}
+
+.member-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2E7D32;
+    margin-bottom: 0.5rem;
+}
+
+.member-ra {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.member-role {
+    background: linear-gradient(135deg, #E8F5E8 0%, #C8E6C9 100%);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2E7D32;
+    border: 2px solid #4CAF50;
+}
+
+.project-info {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    margin-top: 4rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 3px solid #4CAF50;
+}
+
+.project-info h3 {
+    color: #2E7D32;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.project-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.project-detail {
+    padding: 1rem;
+    background: #F1F8E9;
+    border-radius: 10px;
+    border-left: 4px solid #4CAF50;
+}
+
+.project-detail strong {
+    color: #2E7D32;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.project-mission {
+    background: linear-gradient(135deg, #E8F5E8 0%, #C8E6C9 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    text-align: center;
+    border: 2px solid #4CAF50;
+}
+
+.github-link {
+    display: inline-block;
+    background: #333;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.github-link:hover {
+    background: #555;
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   MEDIA QUERIES - RESPONSIVIDADE
+======================================== */
+
+/* Tablet - 768px */
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .section {
+        padding: 2rem 1rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .carousel-container {
+        margin: 0 1rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .lixo-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+    }
+
+    .carousel-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .bins-container {
+        gap: 1rem;
+    }
+
+    .bin {
+        width: 120px;
+        height: 160px;
+    }
+
+    .bin-icon {
+        font-size: 2rem;
+    }
+
+    .team-members {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile - 480px */
+@media (max-width: 480px) {
+    .header {
+        padding: 0.8rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .section {
+        padding: 1.5rem 0.8rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .carousel-container {
+        padding: 1.5rem 1rem;
+        margin: 0 0.5rem;
+    }
+
+    .lixo-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    .lixo-title {
+        font-size: 1.5rem;
+    }
+
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .carousel-nav.prev { 
+        left: -20px; 
+    }
+
+    .carousel-nav.next { 
+        right: -20px; 
+    }
+
+    .bins-container {
+        gap: 0.8rem;
+    }
+
+    .bin {
+        width: 100px;
+        height: 140px;
+        font-size: 0.8rem;
+    }
+
+    .bin-icon {
+        font-size: 1.8rem;
+    }
+
+    .trash-item {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    .game-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn, .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .member-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+    }
+
+    .project-info {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* Extra Small - 320px */
+@media (max-width: 320px) {
+    .bins-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bin {
+        width: 120px;
+        height: 150px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .carousel-container {
+        padding: 1rem 0.5rem;
+    }
+
+    .member-card {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ========================================
+   ANIMAÇÕES ADICIONAIS
+======================================== */
+
+/* Animação de entrada dos cards */
+@keyframes slideInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.member-card {
+    animation: slideInUp 0.6s ease-out;
+}
+
+.member-card:nth-child(1) { animation-delay: 0.1s; }
+.member-card:nth-child(2) { animation-delay: 0.2s; }
+.member-card:nth-child(3) { animation-delay: 0.3s; }
+.member-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Animação de pulso para elementos importantes */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.trash-item:hover {
+    animation: pulse 0.5s ease-in-out;
+}
+
+/* Efeito de ondulação nos botões */
+.btn, .btn-secondary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before, .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: width 0.6s, height 0.6s;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.btn:active::before, .btn-secondary:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn > *, .btn-secondary > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Efeito de brilho nos ícones das lixeiras */
+.bin-icon {
+    transition: all 0.3s ease;
+}
+
+.bin:hover .bin-icon {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
