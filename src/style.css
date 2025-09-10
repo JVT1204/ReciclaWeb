@@ -573,12 +573,17 @@ body {
     border-left: 4px solid #FF9800;
 }
 
-.team-members {
-    display: grid;
+.team-members {   
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem; /* Espaço entre os cards, opcional */
+    justify-content: center;
+}
+/*    .team-members {display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin: 3rem 0;
-}
+}*/
 
 .member-card {
     background: white;
@@ -774,8 +779,13 @@ body {
     }
 
     .team-members {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0; /* sem espaço entre os cards */
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 2rem auto;
     }
 
     .project-details {
@@ -927,7 +937,16 @@ body {
 }
 
 .member-card {
-    animation: slideInUp 0.6s ease-out;
+    flex: 1 1 0;
+    min-width: 0;
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
 }
 
 .member-card:nth-child(1) { animation-delay: 0.1s; }

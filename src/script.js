@@ -64,7 +64,17 @@ const gameData = [
     { item: '📦', type: 'papel', name: 'Caixa de papelão' },
     { item: '🥤', type: 'plastico', name: 'Copo plástico' },
     { item: '🍺', type: 'vidro', name: 'Garrafa de cerveja' },
-    { item: '🔧', type: 'metal', name: 'Ferramenta de ferro' }
+    { item: '🔧', type: 'metal', name: 'Ferramenta de ferro' },
+    { item: '🍠', type: 'organico', name: 'Batata' },
+    { item: '🛍️', type: 'plastico', name: 'Sacola plástica' },
+    { item: '📝', type: 'papel', name: 'Bloco de notas' },
+    { item: '🍯', type: 'vidro', name: 'Pote de mel' },
+    { item: '🛠️', type: 'metal', name: 'Chave de fenda' },
+    { item: '🥬', type: 'organico', name: 'Folha de alface' },
+    { item: '🧴', type: 'plastico', name: 'Frasco de sabonete líquido' },
+    { item: '📬', type: 'papel', name: 'Envelope usado' },
+    { item: '🍾', type: 'vidro', name: 'Garrafa de vinho' },
+    { item: '🔩', type: 'metal', name: 'Parafuso' }
 ];
 
 // ========================================
