@@ -14,6 +14,7 @@
                 ♻️ ReciclaWeb
             </a>
             
+            <!-- Botão de toggle para o menu "hambúrguer" -->
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                 ☰
             </button>
@@ -31,6 +32,7 @@
             </nav>
         </header>
 
+        <!-- MAIN: Conteúdo principal da página, onde as diferentes telas são exibidas -->
         <main id="mainContent">
         <!-- TELA HOME -->
         <div id="home" class="screen home-screen active" role="main">
@@ -40,6 +42,7 @@
                     Navegue pelas categorias e aprenda a separar corretamente cada resíduo para contribuir com um planeta mais sustentável
                 </p>
                 
+                <!-- CAROUSEL CONTAINER: Contém o carrossel de tipos de lixo e seus controles -->
                 <div class="carousel-container">
                     <button class="carousel-nav prev" type="button" aria-label="Slide anterior" onclick="previousSlide()">‹</button>
                     <button class="carousel-nav next" type="button" aria-label="Próximo slide" onclick="nextSlide()">›</button>
@@ -48,6 +51,7 @@
                         <!-- Slides serão criados dinamicamente pelo JavaScript -->
                     </div>
                     
+                    <!-- INDICATORS: Indicadores de slide para navegação direta -->
                     <div class="indicators">
                         <span class="indicator active" onclick="goToSlide(0)"></span>
                         <span class="indicator" onclick="goToSlide(1)"></span>
@@ -57,9 +61,11 @@
                     </div>
                 </div>
 
+                <!-- CTA SECTION: Seção de "Call to Action" para iniciar o jogo -->
                 <div class="cta-section">
                     <h3 style="color: #2E7D32; margin-bottom: 1rem;">Pronto para testar seus conhecimentos?</h3>
                     <p style="margin-bottom: 1.5rem;">Agora que você aprendeu sobre os tipos de resíduos, que tal um desafio divertido?</p>
+                    <!-- Botão para navegar até a tela do jogo -->
                     <button class="btn" onclick="showScreen('game')">
                         🎯 Jogar Agora!
                     </button>
@@ -75,7 +81,9 @@
                     Teste seus conhecimentos! Clique na lixeira correta para cada resíduo e ganhe pontos
                 </p>
                 
+                <!-- GAME CONTAINER: Contém a interface do jogo -->
                 <div class="game-container">
+                    <!-- SCORE BOARD: Exibe a pontuação atual do jogador -->
                     <div class="score-board">
                         <div class="score">
                             <span>Pontuação: <strong>0 / 10</strong></span>
@@ -84,6 +92,7 @@
                         <p style="margin-top: 0.5rem; color: #666;">Acerte o máximo de separações possíveis!</p>
                     </div>
                     
+                    <!-- GAME AREA: Área principal do jogo com o item de lixo e as lixeiras -->
                     <div class="game-area">
                         <h3 style="color: #2E7D32; margin-bottom: 1rem;">Item Atual</h3>
                         
@@ -94,6 +103,7 @@
                             </p>
                         </div>
                         
+                        <!-- BINS CONTAINER: Contém as lixeiras para classificação dos resíduos -->
                         <div class="bins-container">
                             <div class="bin plastico" data-type="plastico">
                                 <div class="bin-label">PLÁSTICO</div>
@@ -112,6 +122,7 @@
                             </div>
                         </div>
 
+                        <!-- GAME CONTROLS: Botões de controle do jogo -->
                         <div class="game-controls">
                             <button class="btn-secondary" type="button" onclick="newItem()">
                                 🔄 Novo Item
@@ -131,6 +142,7 @@
         <!-- TELA EQUIPE -->
         <div id="team" class="screen team-screen" role="main">
             <section class="section">
+                <!-- TEAM INTRO: Introdução à seção dos desenvolvedores -->
                 <div class="team-intro">
                     <h1 class="section-title" id="teamTitle">👥 Desenvolvedores</h1>
                     <p class="section-subtitle">
@@ -141,6 +153,7 @@
                     </div>
                 </div>
 
+                <!-- TEAM MEMBERS: Cartões de cada membro da equipe -->
                 <div class="team-members">
                     <div class="member-card">
                         <div class="member-avatar">👨‍💻</div>

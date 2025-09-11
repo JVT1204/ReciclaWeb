@@ -16,12 +16,12 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    line-height: 1.6; /* Espaçamento entre linhas para melhor legibilidade */
     background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 50%, #81C784 100%);
-    min-height: 100vh;
+    min-height: 100vh; /* Garante que o body ocupe no mínimo 100% da altura da viewport */
 }
 
-/* Container Principal */
+/* Container Principal: Centraliza o conteúdo e adiciona um sombreamento */
 .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -56,9 +56,10 @@ body {
     color: white;
 }
 
+/* Efeito ao passar o mouse sobre o logo */
 .logo:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+    transition: transform 0.3s ease; /* Transição suave */
 }
 
 .nav {
@@ -68,32 +69,34 @@ body {
     width: 100%; /* Ocupa a largura total quando visível */
     position: absolute; /* Posicionamento para o menu suspenso */
     top: 100%; /* Abaixo do header */
-    left: 0;
-    background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%); /* Fundo igual ao header */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    padding: 1rem 0;
+    left: 0; /* Alinhado à esquerda */
+    /* Gradiente de fundo igual ao header */
+    background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra para o menu suspenso */
+    padding: 1rem 0; /* Preenchimento interno */
 }
 
 .nav.active {
-    display: flex; /* Exibe o menu quando a classe 'active' está presente */
+    display: flex; /* Usa Flexbox para exibir os links */
 }
 
 .nav-link {
     color: white;
     text-decoration: none;
     padding: 0.8rem 1.5rem;
-    border-radius: 0; /* Remove border-radius para links de menu em coluna */
-    background: transparent; /* Fundo transparente */
-    transition: all 0.3s ease;
-    border: none; /* Remove a borda padrão */
+    border-radius: 0;
+    background: transparent;
+    transition: all 0.3s ease; /* Transição suave para todas as propriedades */
+    border: none;
     font-weight: 500;
-    text-align: center; /* Centraliza o texto */
+    text-align: center;
 }
 
+/* Efeito ao passar o mouse sobre os links de navegação e para o link ativo */
 .nav-link:hover, .nav-link.active {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: transparent; /* Remove borda em hover/active */
-    transform: none; /* Remove transformação de hover */
+    background: rgba(255, 255, 255, 0.2); /* Fundo semi-transparente ao passar o mouse */
+    border-color: transparent;
+    transform: none;
 }
 
 /* Menu Mobile */
@@ -109,6 +112,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* Efeito ao passar o mouse sobre o botão do menu mobile */
 .mobile-menu-toggle:hover {
     background: rgba(255, 255, 255, 0.1);
 }
@@ -118,25 +122,28 @@ body {
 ======================================== */
 .screen {
     display: none;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px); /* Altura mínima, considerando o cabeçalho */
 }
 
+/* Exibe a tela ativa com uma animação de fade-in */
 .screen.active {
     display: block;
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Animação de fade-in para as telas */
 @keyframes fadeIn {
     from { 
-        opacity: 0; 
-        transform: translateY(20px); 
+        opacity: 0; /* Começa invisível */
+        transform: translateY(20px); /* Começa ligeiramente abaixo */
     }
     to { 
-        opacity: 1; 
-        transform: translateY(0); 
+        opacity: 1; /* Termina totalmente visível */
+        transform: translateY(0); /* Posição final */
     }
 }
 
+/* Estilos gerais para as seções de conteúdo */
 .section {
     padding: 3rem 2rem;
 }
@@ -185,6 +192,7 @@ body {
     justify-content: center;
 }
 
+/* Estilos para cada cartão de tipo de lixo no carrossel */
 .lixo-card {
     position: absolute;
     top: 50%;
@@ -306,11 +314,13 @@ body {
     z-index: 2;
 }
 
+/* Efeito ao passar o mouse sobre os botões do carrossel */
 .carousel-nav:hover {
     background: #45a049;
     transform: translateY(-50%) scale(1.1);
 }
 
+/* Posicionamento dos botões de navegação (setas) */
 .carousel-nav.prev { 
     left: 40px;
 }
@@ -319,6 +329,7 @@ body {
     right: 40px;
 }
 
+/* Indicadores de slide do carrossel */
 .indicators {
     display: flex;
     justify-content: center;
@@ -363,6 +374,7 @@ body {
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
+/* Efeito ao passar o mouse sobre o botão principal */
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
@@ -380,6 +392,7 @@ body {
     margin: 0 auto;
 }
 
+/* Painel de pontuação */
 .score-board {
     background: white;
     padding: 1.5rem;
@@ -389,6 +402,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilo da pontuação */
 .score {
     font-size: 2rem;
     font-weight: bold;
@@ -399,6 +413,7 @@ body {
     gap: 1rem;
 }
 
+/* Área do jogo */
 .game-area {
     background: white;
     border-radius: 20px;
@@ -408,10 +423,12 @@ body {
     text-align: center;
 }
 
+/* Item atual de lixo */
 .current-item {
     margin: 2rem 0;
 }
 
+/* Estilo do item de lixo */
 .trash-item {
     width: 100px;
     height: 100px;
@@ -428,15 +445,19 @@ body {
     box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
 }
 
+/* Efeito ao passar o mouse sobre o item de lixo */
 .trash-item:hover {
     transform: scale(1.1) rotate(5deg);
 }
 
+/******** Se funcionar ***********/
+/* Efeito ao clicar no item de lixo */
 .trash-item:active {
-    cursor: grabbing;
-    transform: scale(0.95);
+    cursor: grabbing; /* Cursor de agarrar */
+    transform: scale(0.95); /* Diminui ligeiramente */
 }
 
+/* Container das lixeiras */
 .bins-container {
     display: flex;
     justify-content: center;
@@ -445,6 +466,7 @@ body {
     margin: 3rem 0;
 }
 
+/* Estilo de cada lixeira */
 .bin {
     width: 140px;
     height: 180px;
@@ -462,6 +484,7 @@ body {
     overflow: hidden;
 }
 
+/* Pseudo-elemento para o efeito de brilho/gradiente nas lixeiras */
 .bin::before {
     content: '';
     position: absolute;
@@ -469,20 +492,23 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
-    z-index: 1;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%); /* Gradiente semi-transparente */
+    z-index: 1; /* Fica abaixo do conteúdo real da lixeira */
 }
 
+/* Garante que o conteúdo da lixeira fique acima do pseudo-elemento */
 .bin > * {
     position: relative;
     z-index: 2;
 }
 
+/* Efeito ao passar o mouse sobre a lixeira */
 .bin:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
+/* Cores e gradientes específicos para cada tipo de lixeira */
 .bin.plastico { 
     border-color: #F44336; 
     background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%); 
@@ -513,16 +539,19 @@ body {
     color: #5D4037;
 }
 
+/* Ícone da lixeira (dentro de .bin) */
 .bin-icon {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
 }
 
+/* Rótulo da lixeira */
 .bin-label {
     font-size: 1rem;
     font-weight: bold;
 }
 
+/* Controles do jogo (botões) */
 .game-controls {
     display: flex;
     justify-content: center;
@@ -531,6 +560,7 @@ body {
     margin-top: 2rem;
 }
 
+/* Botão secundário (cinza) */
 .btn-secondary {
     background: linear-gradient(135deg, #607D8B 0%, #546E7A 100%);
     color: white;
@@ -545,6 +575,7 @@ body {
     display: inline-block;
 }
 
+/* Efeito ao passar o mouse sobre o botão secundário */
 .btn-secondary:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(96, 125, 139, 0.3);
@@ -557,11 +588,13 @@ body {
     background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
 }
 
+/* Introdução da seção da equipe */
 .team-intro {
     text-align: center;
     margin-bottom: 4rem;
 }
 
+/* Citação da equipe */
 .team-quote {
     font-style: italic;
     font-size: 1.2rem;
@@ -573,6 +606,7 @@ body {
     border-left: 4px solid #FF9800;
 }
 
+/* Container dos membros da equipe */
 .team-members {   
     display: flex;
     flex-direction: row;
@@ -585,6 +619,7 @@ body {
     margin: 3rem 0;
 }*/
 
+/* Cartão de cada membro da equipe */
 .member-card {
     background: white;
     border-radius: 20px;
@@ -595,12 +630,14 @@ body {
     border: 3px solid transparent;
 }
 
+/* Efeito ao passar o mouse sobre o cartão do membro */
 .member-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     border-color: #FF9800;
 }
 
+/* Avatar do membro da equipe */
 .member-avatar {
     width: 120px;
     height: 120px;
@@ -615,6 +652,7 @@ body {
     overflow: hidden;
 }
 
+/* Pseudo-elemento para o gradiente de fundo do avatar */
 .member-avatar::before {
     content: '';
     position: absolute;
@@ -622,10 +660,11 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
-    z-index: 1;
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); /* Gradiente laranja */
+    z-index: 1; /* Fica abaixo do conteúdo real do avatar */
 }
 
+/* Garante que o conteúdo do avatar fique acima do pseudo-elemento */
 .member-avatar > * {
     position: relative;
     z-index: 2;
@@ -718,64 +757,63 @@ body {
 /* ========================================
    MEDIA QUERIES - RESPONSIVIDADE
 ======================================== */
-
-/* Tablet - 768px */
+/* Media query para telas de tablet (max-width: 768px) */
 @media (max-width: 768px) {
     .header {
-        padding: 1rem;
-        flex-wrap: wrap;
+        padding: 1rem; /* Ajusta o preenchimento do cabeçalho */
+        flex-wrap: wrap; /* Permite que os itens do cabeçalho quebrem linha */
     }
 
     .nav {
-        margin-top: 1rem;
+        margin-top: 1rem; /* Adiciona margem superior ao menu de navegação */
     }
 
     .section {
-        padding: 2rem 1rem;
+        padding: 2rem 1rem; /* Ajusta o preenchimento das seções */
     }
 
     .section-title {
-        font-size: 2.2rem;
+        font-size: 2.2rem; /* Ajusta o tamanho do título da seção */
     }
 
     .carousel-container {
-        margin: 0 1rem;
-        padding: 2rem 1.5rem;
+        margin: 0 1rem; /* Ajusta as margens do container do carrossel */
+        padding: 2rem 1.5rem; /* Ajusta o preenchimento */
     }
 
     .carousel-wrapper {
-        min-height: 450px;
+        min-height: 450px; /* Ajusta a altura mínima do wrapper do carrossel */
     }
 
     .lixo-card {
-        min-height: 400px;
-        padding: 1.5rem;
-        max-width: 500px;
+        min-height: 400px; /* Ajusta a altura mínima do cartão de lixo */
+        padding: 1.5rem; /* Ajusta o preenchimento */
+        max-width: 500px; /* Ajusta a largura máxima */
     }
 
     .lixo-icon {
-        width: 100px;
-        height: 100px;
-        font-size: 2.5rem;
+        width: 100px; /* Ajusta a largura do ícone de lixo */
+        height: 100px; /* Ajusta a altura */
+        font-size: 2.5rem; /* Ajusta o tamanho da fonte do ícone */
     }
 
     .carousel-nav {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
+        width: 50px; /* Ajusta a largura dos botões de navegação */
+        height: 50px; /* Ajusta a altura */
+        font-size: 1.5rem; /* Ajusta o tamanho da fonte */
     }
 
     .bins-container {
-        gap: 1rem;
+        gap: 1rem; /* Ajusta o espaçamento entre as lixeiras */
     }
 
     .bin {
-        width: 120px;
-        height: 160px;
+        width: 120px; /* Ajusta a largura da lixeira */
+        height: 160px; /* Ajusta a altura */
     }
 
     .bin-icon {
-        font-size: 2rem;
+        font-size: 2rem; /* Ajusta o tamanho do ícone da lixeira */
     }
 
     .team-members {
@@ -789,134 +827,134 @@ body {
     }
 
     .project-details {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Colunas únicas para detalhes do projeto */
     }
 }
 
-/* Mobile - 480px */
+/* Media query para telas de mobile (max-width: 480px) */
 @media (max-width: 480px) {
     .header {
-        padding: 0.8rem;
+        padding: 0.8rem; /* Reduz o preenchimento do cabeçalho */
     }
 
     .logo {
-        font-size: 1.5rem;
+        font-size: 1.5rem; /* Reduz o tamanho da fonte do logo */
     }
 
     .section {
-        padding: 1.5rem 0.8rem;
+        padding: 1.5rem 0.8rem; /* Reduz o preenchimento das seções */
     }
 
     .section-title {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Reduz o tamanho do título da seção */
     }
 
     .section-subtitle {
-        font-size: 1.1rem;
+        font-size: 1.1rem; /* Reduz o tamanho do subtítulo da seção */
     }
 
     .carousel-container {
-        padding: 1.5rem 1rem;
-        margin: 0 0.5rem;
+        padding: 1.5rem 1rem; /* Ajusta o preenchimento do carrossel */
+        margin: 0 0.5rem; /* Ajusta as margens */
     }
 
     .carousel-wrapper {
-        min-height: 400px;
+        min-height: 400px; /* Ajusta a altura mínima do wrapper do carrossel */
     }
 
     .lixo-card {
-        min-height: 350px;
-        padding: 1rem;
-        max-width: 400px;
+        min-height: 350px; /* Ajusta a altura mínima do cartão de lixo */
+        padding: 1rem; /* Ajusta o preenchimento */
+        max-width: 400px; /* Ajusta a largura máxima */
     }
 
     .lixo-icon {
-        width: 80px;
-        height: 80px;
-        font-size: 2rem;
+        width: 80px; /* Reduz a largura do ícone de lixo */
+        height: 80px; /* Reduz a altura */
+        font-size: 2rem; /* Reduz o tamanho da fonte do ícone */
     }
 
     .lixo-title {
-        font-size: 1.5rem;
+        font-size: 1.5rem; /* Reduz o tamanho do título do lixo */
     }
 
     .carousel-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
+        width: 40px; /* Reduz a largura dos botões de navegação */
+        height: 40px; /* Reduz a altura */
+        font-size: 1.2rem; /* Reduz o tamanho da fonte */
     }
 
     .carousel-nav.prev { 
-        left: 5px; 
+        left: 5px; /* Ajusta a posição do botão anterior */
     }
 
     .carousel-nav.next { 
-        right: 5px; 
+        right: 5px; /* Ajusta a posição do botão próximo */
     }
 
     .bins-container {
-        gap: 0.8rem;
+        gap: 0.8rem; /* Reduz o espaçamento entre as lixeiras */
     }
 
     .bin {
-        width: 100px;
-        height: 140px;
-        font-size: 0.8rem;
+        width: 100px; /* Reduz a largura da lixeira */
+        height: 140px; /* Reduz a altura */
+        font-size: 0.8rem; /* Reduz o tamanho da fonte */
     }
 
     .bin-icon {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Reduz o tamanho do ícone da lixeira */
     }
 
     .trash-item {
-        width: 80px;
-        height: 80px;
-        font-size: 2rem;
+        width: 80px; /* Reduz a largura do item de lixo */
+        height: 80px; /* Reduz a altura */
+        font-size: 2rem; /* Reduz o tamanho da fonte */
     }
 
     .game-controls {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; /* Organiza os controles em coluna */
+        align-items: center; /* Centraliza os itens */
     }
 
     .btn, .btn-secondary {
-        width: 100%;
-        max-width: 300px;
+        width: 100%; /* Ocupa a largura total */
+        max-width: 300px; /* Largura máxima */
     }
 
     .member-avatar {
-        width: 100px;
-        height: 100px;
-        font-size: 2.5rem;
+        width: 100px; /* Reduz a largura do avatar do membro */
+        height: 100px; /* Reduz a altura */
+        font-size: 2.5rem; /* Reduz o tamanho da fonte */
     }
 
     .project-info {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1.5rem; /* Ajusta o preenchimento das informações do projeto */
     }
 }
 
-/* Extra Small - 320px */
+/* Media query para telas extra pequenas (max-width: 320px) */
 @media (max-width: 320px) {
     .bins-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; /* Organiza as lixeiras em coluna */
+        align-items: center; /* Centraliza os itens */
     }
 
     .bin {
-        width: 120px;
-        height: 150px;
+        width: 120px; /* Ajusta a largura da lixeira */
+        height: 150px; /* Ajusta a altura */
     }
 
     .section-title {
-        font-size: 1.6rem;
+        font-size: 1.6rem; /* Reduz o tamanho do título da seção */
     }
 
     .carousel-container {
-        padding: 1rem 0.5rem;
+        padding: 1rem 0.5rem; /* Reduz o preenchimento do carrossel */
     }
 
     .member-card {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1.5rem; /* Reduz o preenchimento do cartão do membro */
     }
 }
 
@@ -927,15 +965,16 @@ body {
 /* Animação de entrada dos cards */
 @keyframes slideInUp {
     from {
-        transform: translateY(30px);
-        opacity: 0;
+        transform: translateY(30px); /* Começa 30px abaixo */
+        opacity: 0; /* Começa invisível */
     }
     to {
-        transform: translateY(0);
-        opacity: 1;
+        transform: translateY(0); /* Termina na posição original */
+        opacity: 1; /* Termina totalmente visível */
     }
 }
 
+/* Estilos para os cartões de membro */
 .member-card {
     flex: 1 1 0;
     min-width: 0;
@@ -949,6 +988,7 @@ body {
     border: 3px solid transparent;
 }
 
+/* Atrasos para animações de entrada dos cartões de membro */
 .member-card:nth-child(1) { animation-delay: 0.1s; }
 .member-card:nth-child(2) { animation-delay: 0.2s; }
 .member-card:nth-child(3) { animation-delay: 0.3s; }
@@ -961,16 +1001,18 @@ body {
     100% { transform: scale(1); }
 }
 
+/* Aplica a animação de pulso ao passar o mouse sobre o item de lixo */
 .trash-item:hover {
     animation: pulse 0.5s ease-in-out;
 }
 
 /* Efeito de ondulação nos botões */
 .btn, .btn-secondary {
-    position: relative;
-    overflow: hidden;
+    position: relative; /* Para posicionar o pseudo-elemento ::before */
+    overflow: hidden; /* Esconde o pseudo-elemento que transborda */
 }
 
+/* Pseudo-elemento para o efeito de ondulação nos botões */
 .btn::before, .btn-secondary::before {
     content: '';
     position: absolute;
@@ -985,11 +1027,13 @@ body {
     z-index: 0;
 }
 
+/* Expande o pseudo-elemento ao clicar nos botões para criar o efeito de ondulação */
 .btn:active::before, .btn-secondary:active::before {
     width: 300px;
     height: 300px;
 }
 
+/* Garante que o conteúdo do botão fique acima do pseudo-elemento */
 .btn > *, .btn-secondary > * {
     position: relative;
     z-index: 1;
@@ -1000,6 +1044,7 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Aplica transformação e brilho ao passar o mouse sobre o ícone da lixeira */
 .bin:hover .bin-icon {
     transform: scale(1.2);
     filter: brightness(1.2);
