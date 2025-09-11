@@ -8,6 +8,7 @@ let currentScreen = 'home';
 let currentSlide = 0;
 let gameScore = 0;
 let gameItems = [];
+const MAX_GAME_SCORE = 10; // Definindo a pontuação máxima como 10
 
 // Dados dos tipos de lixo para o carrossel
 const lixoTypes = [
@@ -251,22 +252,26 @@ function initializeGame() {
 }
 
 function newItem() {
-    if (gameItems.length === 0) {
-        // Reiniciar jogo
-        gameItems = [...gameData];
-        gameScore = 0;
+    if (gameScore === MAX_GAME_SCORE) { // Verifica se a pontuação máxima foi atingida
+        showMaxScoreFeedback(); // Mostra feedback de pontuação máxima
+        return; // Sai da função para não gerar um novo item
     }
-    
+
+    if (gameItems.length === 0) {
+        // Reiniciar gameItems se todos os itens foram usados, mas o score máximo não foi atingido
+        gameItems = [...gameData];
+    }
+
     const randomIndex = Math.floor(Math.random() * gameItems.length);
     const selectedItem = gameItems.splice(randomIndex, 1)[0];
-    
+
     const trashElement = document.getElementById('currentTrash');
     if (trashElement) {
         trashElement.textContent = selectedItem.item;
         trashElement.setAttribute('data-type', selectedItem.type);
         trashElement.setAttribute('data-name', selectedItem.name);
     }
-    
+
     updateScore();
 }
 
@@ -328,13 +333,13 @@ function showFeedback(message, isCorrect) {
 function updateScore() {
     const scoreElement = document.querySelector('.score strong');
     if (scoreElement) {
-        scoreElement.textContent = `${gameScore} / ${gameData.length}`;
+        scoreElement.textContent = `${gameScore} / ${MAX_GAME_SCORE}`; // Usa MAX_GAME_SCORE
     }
 }
 
 function showStats() {
-    const percentage = Math.round((gameScore / gameData.length) * 100);
-    const message = `📊 Sua pontuação: ${gameScore}/${gameData.length} (${percentage}%)\n\n`;
+    const percentage = Math.round((gameScore / MAX_GAME_SCORE) * 100); // Usa MAX_GAME_SCORE
+    const message = `📊 Sua pontuação: ${gameScore}/${MAX_GAME_SCORE} (${percentage}%)\n\n`; // Usa MAX_GAME_SCORE
     
     let performance = '';
     if (percentage >= 90) {
@@ -348,6 +353,18 @@ function showStats() {
     }
     
     alert(message + performance);
+}
+
+function showMaxScoreFeedback() {
+    const feedbackMessage = '🎉 Parabéns! Você atingiu a pontuação máxima de reciclagem!';
+    showFeedback(feedbackMessage, true); // Reutiliza a função showFeedback
+
+    // Opcional: reiniciar o jogo ou mostrar uma tela de resultados após o feedback
+    setTimeout(() => {
+        showScreen('home'); // Volta para a tela inicial após 3 segundos
+        gameScore = 0; // Reinicia a pontuação para uma nova partida
+        updateScore(); // Atualiza a exibição da pontuação
+    }, 3000);
 }
 
 // ========================================
