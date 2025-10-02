@@ -35,8 +35,7 @@
         <!-- MAIN: Conteúdo principal da página, onde as diferentes telas são exibidas -->
         <main id="mainContent">
         <!-- TELA HOME -->
-        <div id="home" class="screen home-screen active" role="main">
-            <section class="section">
+        <section id="home" class="screen home-screen active section">
                 <h1 class="section-title">🗂️ Conheça os Tipos de Lixo</h1>
                 <p class="section-subtitle">
                     Navegue pelas categorias e aprenda a separar corretamente cada resíduo para contribuir com um planeta mais sustentável
@@ -62,20 +61,19 @@
                 </div>
 
                 <!-- CTA SECTION: Seção de "Call to Action" para iniciar o jogo -->
-                <div class="cta-section">
+                <section class="cta-section">
                     <h3 style="color: #2E7D32; margin-bottom: 1rem;">Pronto para testar seus conhecimentos?</h3>
                     <p style="margin-bottom: 1.5rem;">Agora que você aprendeu sobre os tipos de resíduos, que tal um desafio divertido?</p>
                     <!-- Botão para navegar até a tela do jogo -->
                     <button class="btn" onclick="showScreen('game')">
                         🎯 Jogar Agora!
                     </button>
-                </div>
+                </section>
             </section>
-        </div>
+        </section>
 
         <!-- TELA JOGO -->
-        <div id="game" class="screen game-screen" role="main">
-            <section class="section">
+        <section id="game" class="screen game-screen section">
                 <h1 class="section-title" id="gameTitle">🎯 Desafio da Separação</h1>
                 <p class="section-subtitle">
                     Teste seus conhecimentos! Clique na lixeira correta para cada resíduo e ganhe pontos
@@ -137,11 +135,10 @@
                     </div>
                 </div>
             </section>
-        </div>
+        </section>
 
         <!-- TELA EQUIPE -->
-        <div id="team" class="screen team-screen" role="main">
-            <section class="section">
+        <section id="team" class="screen team-screen section">
                 <!-- TEAM INTRO: Introdução à seção dos desenvolvedores -->
                 <div class="team-intro">
                     <h1 class="section-title" id="teamTitle">👥 Desenvolvedores</h1>
@@ -155,58 +152,56 @@
 
                 <!-- TEAM MEMBERS: Cartões de cada membro da equipe -->
                 <div class="team-members">
-                    <div class="member-card">
+                    <article class="member-card">
                         <div class="member-avatar">👨‍💻</div>
                         <div class="member-name">João Vitor Tortorello</div>
                         <div class="member-ra">RA: 10402674</div>
                         <div class="member-role">Frontend Developer</div>
-                    </div>
+                    </article>
 
-                    <div class="member-card">
+                    <article class="member-card">
                         <div class="member-avatar">👩‍💻</div>
                         <div class="member-name">Eduardo Augusto Clara Olivato</div>
                         <div class="member-ra">RA: 10738072</div>
                         <div class="member-role">Frontend Developer</div>
-                    </div>
+                    </article>
                 </div>
-                <div class="project-info">
+                <section class="project-info">
                     <h3>📋 Informações do Projeto</h3>
                     
-                    <div class="project-details">
+                    <dl class="project-details">
                         <div class="project-detail">
-                            <strong>🎓 Disciplina:</strong>
-                            Web Mobile
+                            <dt><strong>🎓 Disciplina:</strong></dt>
+                            <dd>Web Mobile</dd>
                         </div>
                         <div class="project-detail">
-                            <strong>📅 Semestre:</strong>
-                            2025.2
+                            <dt><strong>📅 Semestre:</strong></dt>
+                            <dd>2025.2</dd>
                         </div>
                         <div class="project-detail">
-                            <strong>🌍 Caráter:</strong>
-                            Extensionista
+                            <dt><strong>🌍 Caráter:</strong></dt>
+                            <dd>Extensionista</dd>
                         </div>
-                    </div>
+                    </dl>
 
-                    <div class="project-mission">
+                    <section class="project-mission">
                         <h4 style="color: #2E7D32; margin-bottom: 1rem;">🎯 Missão do Projeto</h4>
                         <p style="font-size: 1.1rem; line-height: 1.8;">
                             Promover <strong>educação ambiental</strong> através de tecnologia acessível e interativa, 
                             contribuindo para formar uma comunidade mais consciente sobre a importância da 
                             <strong>coleta seletiva</strong> e do <strong>descarte responsável de resíduos</strong>.
                         </p>
-                    </div>
+                    </section>
 
-                    <div style="text-align: center;">
-                        <p style="margin-bottom: 1rem; color: #666;">
-                            <strong>📂 Código Aberto:</strong> Nosso projeto está disponível para toda a comunidade
-                        </p>
-                        <a href="https://github.com/JVT1204/ReciclaWeb.git" class="github-link">
-                            🔗 Acessar Repositório GitHub
-                        </a>
-                    </div>
-                </div>
+                    <p style="margin-bottom: 1rem; color: #666;">
+                        <strong>📂 Código Aberto:</strong> Nosso projeto está disponível para toda a comunidade
+                    </p>
+                    <a href="https://github.com/JVT1204/ReciclaWeb.git" class="github-link">
+                        🔗 Acessar Repositório GitHub
+                    </a>
+                </section>
             </section>
-        </div>
+        </section>
         </main>
     </div>
     
