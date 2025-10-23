@@ -16,7 +16,7 @@ export default function Home() {
             <h1 className="logo">
               ♻️ ReciclaWeb
             </h1>
-            <p className="subtitle">Projeto Borboleta - Primeira Fase</p>
+            <p className="subtitle">Projeto Borboleta</p>
           </header>
           
           <section className="content">
