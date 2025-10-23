@@ -1,30 +1,33 @@
-// Tipos para o projeto ReciclaWeb - Borboleta
-
-export interface TrashCategory {
+export interface TrashType {
   id: string;
   icon: string;
   title: string;
-  description: string;
   color: string;
-  tip?: string;
+  description: string;
+  tip: string;
 }
 
 export interface GameItem {
-  id: string;
-  icon: string;
+  item: string;
+  type: string;
   name: string;
-  category: string;
 }
 
-export interface GameStats {
+export interface TeamMember {
+  name: string;
+  ra: string;
+  role: string;
+  avatar: string;
+}
+
+export interface GameState {
   score: number;
-  totalQuestions: number;
-  correctAnswers: number;
-  wrongAnswers: number;
+  currentItem: GameItem | null;
+  gameItems: GameItem[];
+  isGameActive: boolean;
 }
 
-export interface UserProgress {
-  level: number;
-  experience: number;
-  achievements: string[];
+export interface CarouselState {
+  currentSlide: number;
+  totalSlides: number;
 }

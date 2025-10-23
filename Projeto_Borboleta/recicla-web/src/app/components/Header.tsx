@@ -1,17 +1,45 @@
-import React from 'react';
+'use client';
 
-interface HeaderProps {
-  title: string;
-  subtitle?: string;
-}
+import { useState } from 'react';
+import Link from 'next/link';
 
-const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
+export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className="header">
-      <h1 className="logo">{title}</h1>
-      {subtitle && <p className="subtitle">{subtitle}</p>}
+      <Link href="/" className="logo" onClick={closeMobileMenu}>
+        ♻️ ReciclaWeb
+      </Link>
+      
+      <button 
+        className="mobile-menu-toggle" 
+        onClick={toggleMobileMenu}
+        aria-expanded={isMobileMenuOpen}
+        aria-label={isMobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+      >
+        ☰
+      </button>
+      
+      <nav className={`nav ${isMobileMenuOpen ? 'active' : ''}`} id="mainNav">
+        <Link href="/" className="nav-link" onClick={closeMobileMenu}>
+          🏠 Home
+        </Link>
+        <Link href="/game" className="nav-link" onClick={closeMobileMenu}>
+          🎮 Jogue Agora
+        </Link>
+        <Link href="/team" className="nav-link" onClick={closeMobileMenu}>
+          👥 Desenvolvedores
+        </Link>
+      </nav>
     </header>
   );
-};
-
-export default Header;
+}

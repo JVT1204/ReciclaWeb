@@ -1,80 +1,97 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import Head from "next/head";
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Header from './components/Header';
+import CategoryCard from './components/CategoryCard';
+import { lixoTypes } from './data/trashCategories';
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % lixoTypes.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % lixoTypes.length);
+  };
+
+  const previousSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? lixoTypes.length - 1 : prev - 1));
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
   return (
-    <>
-          <Head>
-            <title>ReciclaWeb - Projeto Borboleta</title>
-            <meta name="description" content="Educação ambiental através de tecnologia" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
+    <div className="container">
+      <Header />
+      
+      <main id="mainContent">
+        <section id="home" className="screen home-screen active section">
+          <h1 className="section-title">🗂️ Conheça os Tipos de Lixo</h1>
+          <p className="section-subtitle">
+            Navegue pelas categorias e aprenda a separar corretamente cada resíduo para contribuir com um planeta mais sustentável
+          </p>
           
-          <main className="main">
-            <div className="container">
-              <header className="header">
-                <h1 className="logo">
-                  ♻️ ReciclaWeb
-                </h1>
-                <p className="subtitle">Projeto Borboleta</p>
-              </header>
-              
-              <section className="content">
-                <h2 className="title">
-                  🗂️ Conheça os Tipos de Lixo
-                </h2>
-                <p className="description">
-                  Navegue pelas categorias e aprenda a separar corretamente cada resíduo 
-                  para contribuir com um planeta mais sustentável
-                </p>
-                
-                <div className="categories">
-                  <div className="category">
-                    <div className="categoryIcon">🥤</div>
-                    <h3>PLÁSTICO</h3>
-                    <p>Garrafas PET, embalagens, sacolas plásticas</p>
-                  </div>
-                  
-                  <div className="category">
-                    <div className="categoryIcon">📄</div>
-                    <h3>PAPEL</h3>
-                    <p>Jornais, revistas, caixas de papelão</p>
-                  </div>
-                  
-                  <div className="category">
-                    <div className="categoryIcon">🍶</div>
-                    <h3>VIDRO</h3>
-                    <p>Garrafas de vidro, potes de conserva</p>
-                  </div>
-                  
-                  <div className="category">
-                    <div className="categoryIcon">🥫</div>
-                    <h3>METAL</h3>
-                    <p>Latas de alumínio, objetos de ferro</p>
-                  </div>
-                  
-                  <div className="category">
-                    <div className="categoryIcon">🍌</div>
-                    <h3>ORGÂNICO</h3>
-                    <p>Restos de comida, cascas de frutas</p>
-                  </div>
-                </div>
-                
-                <div className="cta">
-                  <button className="button">
-                    🎯 Jogar Agora!
-                  </button>
-                </div>
-              </section>
-              
-              <footer className="footer">
-                <p>Desenvolvido por João Vitor Tortorello e Eduardo Augusto Clara Olivato</p>
-                <p>Web Mobile - 2025.2</p>
-              </footer>
+          <div className="carousel-container">
+            <button 
+              className="carousel-nav prev" 
+              type="button" 
+              aria-label="Slide anterior" 
+              onClick={previousSlide}
+            >
+              ‹
+            </button>
+            <button 
+              className="carousel-nav next" 
+              type="button" 
+              aria-label="Próximo slide" 
+              onClick={nextSlide}
+            >
+              ›
+            </button>
+            
+            <div className="carousel-wrapper">
+              {lixoTypes.map((lixo, index) => (
+                <CategoryCard 
+                  key={lixo.id}
+                  trashType={lixo}
+                  isActive={index === currentSlide}
+                />
+              ))}
             </div>
-          </main>
-        </>
+            
+            <div className="indicators">
+              {lixoTypes.map((_, index) => (
+                <span 
+                  key={index}
+                  className={`indicator ${index === currentSlide ? 'active' : ''}`}
+                  onClick={() => goToSlide(index)}
+                />
+              ))}
+            </div>
+          </div>
+
+          <section className="cta-section">
+            <h3 style={{ color: '#2E7D32', marginBottom: '1rem' }}>
+              Pronto para testar seus conhecimentos?
+            </h3>
+            <p style={{ marginBottom: '1.5rem' }}>
+              Agora que você aprendeu sobre os tipos de resíduos, que tal um desafio divertido?
+            </p>
+            <Link href="/game" className="btn">
+              🎯 Jogar Agora!
+            </Link>
+          </section>
+        </section>
+      </main>
+    </div>
   );
 }

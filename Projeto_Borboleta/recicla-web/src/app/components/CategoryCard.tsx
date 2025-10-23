@@ -1,23 +1,27 @@
-import React from 'react';
+'use client';
+
+import { TrashType } from '../types';
 
 interface CategoryCardProps {
-  icon: string;
-  title: string;
-  description: string;
-  color: string;
+  trashType: TrashType;
+  isActive: boolean;
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ icon, title, description, color }) => {
+export default function CategoryCard({ trashType, isActive }: CategoryCardProps) {
   return (
-    <div 
-      className="category"
-      style={{ borderColor: color }}
-    >
-      <div className="categoryIcon">{icon}</div>
-      <h3>{title}</h3>
-      <p>{description}</p>
+    <div className={`lixo-card ${trashType.id}${isActive ? ' active' : ''}`}>
+      <div className={`lixo-icon ${trashType.id}`}>
+        {trashType.icon}
+      </div>
+      <h3 className="lixo-title" style={{ color: trashType.color }}>
+        {trashType.title}
+      </h3>
+      <p className="lixo-description">
+        {trashType.description}
+      </p>
+      <div className="lixo-tip">
+        {trashType.tip}
+      </div>
     </div>
   );
-};
-
-export default CategoryCard;
+}
