@@ -62,21 +62,47 @@ body {
     transform: scale(1.05);
 }
 
+/* Overlay do menu mobile */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.nav-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
 .nav {
     display: none;
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    padding: 1rem 0;
+    padding: 5rem 1rem 2rem;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
 }
 
 .nav.active {
     display: flex;
+    transform: translateX(0);
 }
 
 .nav-link {
@@ -678,10 +704,63 @@ body {
 /* ========================================
    MEDIA QUERIES - RESPONSIVIDADE
 ======================================== */
+/* ========================================
+   RESPONSIVIDADE - MOBILE
+======================================== */
 @media (max-width: 768px) {
     .header {
         padding: 1rem;
-        flex-wrap: wrap;
+        position: relative;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+        z-index: 1000;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        z-index: 1000;
+    }
+    
+    .nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(27, 94, 32, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 5rem 2rem;
+        z-index: 999;
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    
+    .nav.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .nav-link {
+        font-size: 1.5rem;
+        padding: 1rem 2rem;
+        width: 100%;
+        text-align: center;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover, 
+    .nav-link:focus {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateX(10px);
     }
 
     .nav {
