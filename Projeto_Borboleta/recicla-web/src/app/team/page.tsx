@@ -68,8 +68,7 @@ export default function Team() {
               <h4 style={{ color: '#2E7D32', marginBottom: '1rem' }}>🎯 Missão do Projeto</h4>
               <p style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
                 Promover <strong>educação ambiental</strong> através de tecnologia acessível e interativa, 
-                contribuindo para formar uma comunidade mais consciente sobre a importância da 
-                <strong>coleta seletiva</strong> e do <strong>descarte responsável de resíduos</strong>.
+                contribuindo para formar uma comunidade mais consciente sobre a importância da <strong>coleta seletiva</strong> e do <strong>descarte responsável de resíduos</strong>.
               </p>
             </section>
 

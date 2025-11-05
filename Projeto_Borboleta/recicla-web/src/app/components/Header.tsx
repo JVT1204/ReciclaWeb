@@ -1,8 +1,34 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { FiMenu, FiX } from 'react-icons/fi';
+
+// Componente para o botão do menu mobile
+const MobileMenuButton = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => (
+  <button 
+    className="mobile-menu-toggle" 
+    onClick={onClick}
+    type="button"
+    aria-expanded={isOpen}
+    aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
+    aria-controls="mainNav"
+  >
+    {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+  </button>
+);
+
+// Componente para o overlay do menu
+const MenuOverlay = ({ onClick }: { onClick: () => void }) => (
+  <div 
+    className="nav-overlay active"
+    onClick={onClick}
+    role="button"
+    aria-label="Fechar menu"
+    tabIndex={0}
+    onKeyDown={(e) => e.key === 'Enter' && onClick()}
+  />
+);
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,36 +40,27 @@ export default function Header() {
     return () => setIsMounted(false);
   }, []);
 
-  const toggleMobileMenu = () => {
-    if (!isMounted) return;
-    
+  const toggleMobileMenu = useCallback(() => {
     const newState = !isMobileMenuOpen;
     setIsMobileMenuOpen(newState);
     
     if (typeof document !== 'undefined') {
       document.body.style.overflow = newState ? 'hidden' : 'auto';
     }
-  };
+  }, [isMobileMenuOpen]);
 
-  const closeMobileMenu = () => {
-    if (!isMounted) return;
-    
+  const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
     
     if (typeof document !== 'undefined') {
       document.body.style.overflow = 'auto';
     }
-  };
+  }, []);
 
   // Fecha o menu quando a rota muda
   useEffect(() => {
     if (!isMounted) return;
     
-    const handleRouteChange = () => {
-      closeMobileMenu();
-    };
-
-    // Adiciona listener para fechar o menu ao redimensionar a tela (caso mude para desktop)
     const handleResize = () => {
       if (window.innerWidth > 768) {
         closeMobileMenu();
@@ -54,7 +71,19 @@ export default function Header() {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [isMounted]);
+  }, [isMounted, closeMobileMenu]);
+  
+  // Renderização condicional baseada no estado de montagem
+  if (!isMounted) {
+    return (
+      <header className="header">
+        <Link href="/" className="logo">
+          ♻️ ReciclaWeb
+        </Link>
+        <MobileMenuButton isOpen={false} onClick={() => {}} />
+      </header>
+    );
+  }
 
   return (
     <>
@@ -63,32 +92,21 @@ export default function Header() {
           ♻️ ReciclaWeb
         </Link>
         
-        <button 
-          className="mobile-menu-toggle" 
-          onClick={toggleMobileMenu}
-          aria-expanded={isMounted ? isMobileMenuOpen : false}
-          aria-label={isMounted ? (isMobileMenuOpen ? 'Fechar menu' : 'Abrir menu') : 'Menu'}
-          aria-controls="mainNav"
-        >
-          {isMounted && (isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />)}
-        </button>
+        <MobileMenuButton 
+          isOpen={isMobileMenuOpen} 
+          onClick={toggleMobileMenu} 
+        />
         
         {/* Overlay para fechar o menu ao clicar fora */}
-        {isMounted && isMobileMenuOpen && (
-          <div 
-            className="nav-overlay active"
-            onClick={closeMobileMenu}
-            role="button"
-            aria-label="Fechar menu"
-            tabIndex={0}
-          />
+        {isMobileMenuOpen && (
+          <MenuOverlay onClick={closeMobileMenu} />
         )}
         
         <nav 
           className={`nav ${isMobileMenuOpen ? 'active' : ''}`} 
           id="mainNav"
           aria-hidden={!isMobileMenuOpen}
-          style={!isMounted ? { display: 'none' } : {}}
+          style={!isMounted ? { visibility: 'hidden' } : {}}
         >
           <Link 
             href="/" 
@@ -107,8 +125,7 @@ export default function Header() {
             🎮 Jogue Agora
           </Link>
           <Link 
-            href="/team" 
-            as="/desenvolvedores"
+            href="/team"
             className="nav-link" 
             onClick={closeMobileMenu}
             tabIndex={isMobileMenuOpen ? 0 : -1}
