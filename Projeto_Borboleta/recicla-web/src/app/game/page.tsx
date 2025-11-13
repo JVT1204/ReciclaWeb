@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header';
+import { GameItemDisplay } from '../components/GameItemDisplay';
 import { gameData, MAX_GAME_SCORE } from '../data/trashCategories';
 import { GameItem } from '../types';
 
@@ -84,18 +85,20 @@ export default function Game() {
     alert(message + performance);
   };
 
-  const binTypes = [
-    { type: 'plastico', label: 'PLÁSTICO' },
-    { type: 'papel', label: 'PAPEL' },
-    { type: 'vidro', label: 'VIDRO' },
-    { type: 'metal', label: 'METAL' },
-    { type: 'organico', label: 'ORGÂNICO' }
+  const bins = [
+    { type: 'plastico', label: 'PLÁSTICO', emoji: '♻️' },
+    { type: 'papel', label: 'PAPEL', emoji: '📄' },
+    { type: 'vidro', label: 'VIDRO', emoji: '🥛' },
+    { type: 'metal', label: 'METAL', emoji: '🔩' },
+    { type: 'organico', label: 'ORGÂNICO', emoji: '🍌' }
   ];
+
+  // If no current item and not showing feedback, we're initializing
+  const isInitializing = !currentItem && !feedback;
 
   return (
     <div className="container">
       <Header />
-      
       <main id="mainContent">
         <section id="game" className="screen game-screen active section">
           <h1 className="section-title" id="gameTitle">🎯 Desafio da Separação</h1>
@@ -104,52 +107,47 @@ export default function Game() {
           </p>
           
           <div className="game-container">
-            <div className="score-board">
-              <div className="score">
-                <span>Pontuação: <strong>{gameScore} / {MAX_GAME_SCORE}</strong></span>
-                <span>⭐</span>
+            <div className="score-board mb-6">
+              <div className="score bg-white bg-opacity-90 rounded-full px-6 py-2 shadow-md">
+                <span className="text-lg font-semibold">Pontuação: <strong className="text-green-600">{gameScore} / {MAX_GAME_SCORE}</strong></span>
               </div>
-              <p style={{ marginTop: '0.5rem', color: '#666' }}>
-                Acerte o máximo de separações possíveis!
-              </p>
             </div>
-            
-            <div className="game-area">
-              <h3 style={{ color: '#2E7D32', marginBottom: '1rem' }}>Item Atual</h3>
-              
-              <div className="current-item">
-                <div className="trash-item" id="currentTrash">
-                  {currentItem?.item}
-                </div>
-                <p style={{ marginTop: '1rem', color: '#666', fontSize: '1.1rem' }}>
-                  <strong>Clique</strong> na lixeira correta correspondente ao item acima ⬇️
-                </p>
-              </div>
-              
-              <div className="bins-container">
-                {binTypes.map((bin) => (
-                  <div 
-                    key={bin.type}
-                    className={`bin ${bin.type}`}
-                    data-type={bin.type}
-                    onClick={() => checkAnswer(bin.type)}
-                  >
-                    <div className="bin-label">{bin.label}</div>
-                  </div>
-                ))}
-              </div>
 
-              <div className="game-controls">
-                <button className="btn-secondary" type="button" onClick={newItem}>
-                  🔄 Novo Item
+            <div className="current-item mb-8">
+              {currentItem && (
+                <div className="item-display bg-white bg-opacity-90 rounded-xl p-6 shadow-lg">
+                  <div className="flex flex-col items-center">
+                    <GameItemDisplay item={currentItem} className="mb-4" />
+                    <p className="item-name text-xl font-medium text-gray-800 mt-2">{currentItem.name}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="bins grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+              {bins.map((bin) => (
+                <button
+                  key={bin.type}
+                  className={`bin ${bin.type} flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${!currentItem ? 'opacity-50 cursor-not-allowed' : 'hover:bg-opacity-90'}`}
+                  onClick={() => checkAnswer(bin.type)}
+                  disabled={!currentItem}
+                >
+                  <div className="text-4xl mb-2">{bin.emoji}</div>
+                  <span className="font-medium">{bin.label}</span>
                 </button>
-                <button className="btn-secondary" type="button" onClick={showStats}>
-                  📊 Estatísticas
-                </button>
-                <Link href="/" className="btn">
-                  🏠 Voltar ao Início
-                </Link>
-              </div>
+              ))}
+            </div>
+
+            <div className="game-controls">
+              <button className="btn-secondary" type="button" onClick={newItem}>
+                🔄 Novo Item
+              </button>
+              <button className="btn-secondary" type="button" onClick={showStats}>
+                📊 Estatísticas
+              </button>
+              <Link href="/" className="btn">
+                🏠 Voltar ao Início
+              </Link>
             </div>
           </div>
         </section>
