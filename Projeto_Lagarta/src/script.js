@@ -270,7 +270,7 @@ function loadQuoteFromApi() {
     quoteText.textContent = 'Carregando frase...';
     quoteAuthor.textContent = '';
 
-    fetch('./frases.json')
+    fetch('frases.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erro ao buscar frases.json: ' + response.status);
