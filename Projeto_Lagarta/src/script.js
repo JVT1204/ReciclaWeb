@@ -76,10 +76,10 @@ const gameData = [
 ];
 
 // ========================================
-// NAVEGAÇÃO ENTRE TELAS
+// NAVEGAÇÃO ENTRE TELAS + ROTEAMENTO
 // ========================================
 
-function showScreen(screenId) {
+function showScreen(screenId, options = { updateHash: true }) {
     // Esconder todas as telas
     const screens = document.querySelectorAll('.screen');
     screens.forEach(screen => {
@@ -106,24 +106,62 @@ function showScreen(screenId) {
         } else if (screenId === 'game') {
             initializeGame(); // Inicializa o jogo na tela Game
         }
+
+        // Atualiza a hash da URL, se for para atualizar
+        if (options.updateHash) {
+            window.location.hash = screenId;
+        }
     }
 }
 
 // Atualiza a classe 'active' nos links de navegação para indicar a tela atual.
 function updateActiveNavigation(screenId) {
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('#mainNav .nav-link');
     navLinks.forEach(link => {
         link.classList.remove('active'); // Remove a classe 'active' de todos os links
         link.removeAttribute('aria-current'); // Remove atributo de acessibilidade
     });
     
-    // Encontra o link correspondente à tela ativa e adiciona as classes/atributos
-    const activeLink = document.querySelector(`[onclick="showScreen('${screenId}')"]`);
+    // Encontra o link correspondente à tela ativa pelo href (#home, #game, #team)
+    let activeLink = null;
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href') || '';
+        if (href.startsWith('#')) {
+            const target = href.slice(1); // remove o '#'
+            if (target === screenId) {
+                activeLink = link;
+            }
+        }
+    });
+
     if (activeLink) {
         activeLink.classList.add('active'); // Adiciona a classe 'active'
         activeLink.setAttribute('aria-current', 'page'); // Acessibilidade: indica a página atual
     }
 }
+
+// Controle de rota via hash (#home, #game, #team)
+function handleRoute() {
+    // Pega o que vem depois do #
+    let route = window.location.hash.replace('#', '');
+
+    // Se não tiver nada, vai pra home
+    if (!route) {
+        route = 'home';
+    }
+
+    // Só permite telas conhecidas
+    const validScreens = ['home', 'game', 'team'];
+    if (!validScreens.includes(route)) {
+        route = 'home';
+    }
+
+    // Mostra a tela correta sem alterar a hash de novo
+    showScreen(route, { updateHash: false });
+}
+
+// Quando mudar o # na URL (clicou no menu ou usou voltar/avançar)
+window.addEventListener('hashchange', handleRoute);
 
 // ========================================
 // MENU MOBILE
@@ -425,8 +463,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Inicializar carrossel na primeira carga
-    initializeCarousel();
+    // Em vez de inicializar direto o carrossel, usamos a rota atual
+    handleRoute();
 });
 
 // ========================================
