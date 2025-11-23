@@ -258,9 +258,8 @@ function goToSlide(slideIndex) {
 }
 
 // ========================================
-// API DE FRASES (ZENQUOTES + TRADUÇÃO PT-BR)
+// API DE FRASES (PORTUGUÊS - frases.docapi.dev)
 // ========================================
-
 function loadQuoteFromApi() {
     const quoteText = document.getElementById('quote-text');
     const quoteAuthor = document.getElementById('quote-author');
@@ -270,32 +269,26 @@ function loadQuoteFromApi() {
     quoteText.textContent = 'Carregando frase...';
     quoteAuthor.textContent = '';
 
-    fetch('https://zenquotes.io/api/random')
+    fetch('https://frases.docapi.dev/frase/obter')
         .then(response => response.json())
         .then(data => {
-            if (Array.isArray(data) && data.length > 0) {
-                const quote = data[0].q;
-                const author = data[0].a || 'Autor desconhecido';
+            // A API retorna um objeto com "resposta" sendo um array de frases
+            const lista = Array.isArray(data.resposta) ? data.resposta : [];
 
-                const encodedQuote = encodeURIComponent(quote);
-                const translateUrl = `https://api.mymemory.translated.net/get?q=${encodedQuote}&langpair=en|pt`;
-
-                return fetch(translateUrl)
-                    .then(res => res.json())
-                    .then(translation => {
-                        const translated = translation.responseData.translatedText;
-                        quoteText.textContent = translated;
-                        quoteAuthor.textContent = `— ${author}`;
-                    })
-                    .catch(err => {
-                        console.error('Erro tradução:', err);
-                        quoteText.textContent = quote;
-                        quoteAuthor.textContent = `— ${author}`;
-                    });
-
-            } else {
+            if (lista.length === 0) {
                 quoteText.textContent = 'Não foi possível carregar a frase.';
+                quoteAuthor.textContent = '';
+                return;
             }
+
+            // Escolhe uma frase aleatória da lista
+            const randomIndex = Math.floor(Math.random() * lista.length);
+            const fraseObj = lista[randomIndex];
+
+            quoteText.textContent = fraseObj.frase || 'Não foi possível carregar a frase.';
+            quoteAuthor.textContent = fraseObj.nomeAutor 
+                ? `— ${fraseObj.nomeAutor}` 
+                : '— Autor desconhecido';
         })
         .catch(error => {
             console.error('Erro ao buscar frase da API:', error);
