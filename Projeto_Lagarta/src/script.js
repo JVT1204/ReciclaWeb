@@ -257,45 +257,50 @@ function goToSlide(slideIndex) {
     }
 }
 
-// ========================================
-// API DE CONSELHOS (https://api.adviceslip.com/advice)
-// ========================================
 
+/// ========================================
+// "API" LOCAL DE FRASES (frases.json)
+// ========================================
 function loadQuoteFromApi() {
     const quoteText = document.getElementById('quote-text');
     const quoteAuthor = document.getElementById('quote-author');
 
     if (!quoteText || !quoteAuthor) return;
 
-    quoteText.textContent = 'Carregando conselho...';
+    quoteText.textContent = 'Carregando frase...';
     quoteAuthor.textContent = '';
 
-    fetch('https://api.adviceslip.com/advice', { cache: 'no-cache' })
+    fetch('./frases.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Erro HTTP: ' + response.status);
+                throw new Error('Erro ao buscar frases.json: ' + response.status);
             }
             return response.json();
         })
         .then(data => {
-            const slip = data.slip;
-            const advice = slip && slip.advice ? slip.advice : null;
+            const lista = Array.isArray(data.frases) ? data.frases : [];
 
-            if (!advice) {
-                quoteText.textContent = 'Não foi possível carregar o conselho.';
+            if (lista.length === 0) {
+                quoteText.textContent = 'Não foi possível carregar a frase.';
                 quoteAuthor.textContent = '';
                 return;
             }
 
-            quoteText.textContent = advice;
-            quoteAuthor.textContent = '— Advice Slip API (EN)';
+            const randomIndex = Math.floor(Math.random() * lista.length);
+            const fraseObj = lista[randomIndex];
+
+            quoteText.textContent = fraseObj.frase || 'Não foi possível carregar a frase.';
+            quoteAuthor.textContent = fraseObj.autor
+                ? `— ${fraseObj.autor}`
+                : '— Autor desconhecido';
         })
         .catch(error => {
-            console.error('Erro ao buscar conselho da API:', error);
-            quoteText.textContent = 'Erro ao carregar o conselho da API.';
+            console.error('Erro ao carregar frase da API local:', error);
+            quoteText.textContent = 'Erro ao carregar a frase.';
             quoteAuthor.textContent = '';
         });
 }
+
 
 // ========================================
 // JOGO
