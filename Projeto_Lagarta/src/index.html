@@ -21,21 +21,21 @@
             
             <nav class="nav" id="mainNav">
                 <a href="#home" class="nav-link" aria-current="page">
-                🏠 Home
+                    🏠 Home
                 </a>
                 <a href="#game" class="nav-link">
-                🎮 Jogue Agora
+                    🎮 Jogue Agora
                 </a>
                 <a href="#team" class="nav-link">
-                👥 Desenvolvedores
+                    👥 Desenvolvedores
                 </a>
             </nav>
         </header>
 
         <!-- MAIN: Conteúdo principal da página, onde as diferentes telas são exibidas -->
         <main id="mainContent">
-        <!-- TELA HOME -->
-        <section id="home" class="screen home-screen active section">
+            <!-- TELA HOME -->
+            <section id="home" class="screen home-screen active section">
                 <h1 class="section-title">🗂️ Conheça os Tipos de Lixo</h1>
                 <p class="section-subtitle">
                     Navegue pelas categorias e aprenda a separar corretamente cada resíduo para contribuir com um planeta mais sustentável
@@ -59,6 +59,16 @@
                         <span class="indicator" onclick="goToSlide(4)"></span>
                     </div>
                 </div>
+
+                <!-- NOVA SEÇÃO: FRASE DA API -->
+                <section class="api-quote">
+                    <h2>💬 Frase inspiradora sobre atitudes</h2>
+                    <p id="quote-text">Clique no botão para carregar uma frase.</p>
+                    <p id="quote-author"></p>
+                    <button type="button" onclick="loadQuoteFromApi()">
+                        🔄 Nova frase
+                    </button>
+                </section>
 
                 <!-- CTA SECTION: Seção de "Call to Action" para iniciar o jogo -->
                 <section class="cta-section">
