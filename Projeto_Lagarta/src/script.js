@@ -270,30 +270,16 @@ function loadQuoteFromApi() {
     quoteAuthor.textContent = '';
 
     fetch('https://api.adviceslip.com/advice', {
-        cache: 'no-cache' // evita cache agressivo do navegador
+        cache: 'no-cache'
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro HTTP: ' + response.status);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            const slip = data.slip;
-            const advice = slip && slip.advice ? slip.advice : null;
-
-            if (!advice) {
-                quoteText.textContent = 'Não foi possível carregar o conselho.';
-                quoteAuthor.textContent = '';
-                return;
-            }
-
-            // conselho vem em inglês, você pode deixar claro isso se quiser
+            const advice = data.slip.advice;
             quoteText.textContent = advice;
-            quoteAuthor.textContent = '— Advice Slip API (EN)';
+            quoteAuthor.textContent = '— AdviceSlip API (EN)';
         })
         .catch(error => {
-            console.error('Erro ao buscar conselho da API:', error);
+            console.error('Erro ao buscar conselho:', error);
             quoteText.textContent = 'Erro ao carregar o conselho da API.';
             quoteAuthor.textContent = '';
         });
