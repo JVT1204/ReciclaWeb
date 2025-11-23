@@ -172,6 +172,55 @@ body {
 .home-screen {
     background: linear-gradient(135deg, #F1F8E9 0%, #E8F5E8 100%);
 }
+/* ================================
+   SEÇÃO DE FRASES (API)
+   ================================ */
+.api-quote {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto 3rem auto;
+    max-width: 800px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.api-quote h2 {
+    color: #2E7D32;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+#quote-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+#quote-author {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2E7D32;
+    margin-bottom: 1.5rem;
+}
+
+.api-quote button {
+    background: linear-gradient(135deg, #4CAF50 0%, #45A049 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.8rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.api-quote button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
 
 .carousel-container {
     position: relative;
