@@ -257,8 +257,8 @@ function goToSlide(slideIndex) {
     }
 }
 
-// ========================================
-// API DE FRASES (PORTUGUÊS - frases.docapi.dev)
+//// ========================================
+// API DE CONSELHOS (https://api.adviceslip.com/advice)
 // ========================================
 function loadQuoteFromApi() {
     const quoteText = document.getElementById('quote-text');
@@ -266,33 +266,35 @@ function loadQuoteFromApi() {
 
     if (!quoteText || !quoteAuthor) return;
 
-    quoteText.textContent = 'Carregando frase...';
+    quoteText.textContent = 'Carregando conselho...';
     quoteAuthor.textContent = '';
 
-    fetch('https://frases.docapi.dev/frase/obter')
-        .then(response => response.json())
+    fetch('https://api.adviceslip.com/advice', {
+        cache: 'no-cache' // evita cache agressivo do navegador
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro HTTP: ' + response.status);
+            }
+            return response.json();
+        })
         .then(data => {
-            // A API retorna um objeto com "resposta" sendo um array de frases
-            const lista = Array.isArray(data.resposta) ? data.resposta : [];
+            const slip = data.slip;
+            const advice = slip && slip.advice ? slip.advice : null;
 
-            if (lista.length === 0) {
-                quoteText.textContent = 'Não foi possível carregar a frase.';
+            if (!advice) {
+                quoteText.textContent = 'Não foi possível carregar o conselho.';
                 quoteAuthor.textContent = '';
                 return;
             }
 
-            // Escolhe uma frase aleatória da lista
-            const randomIndex = Math.floor(Math.random() * lista.length);
-            const fraseObj = lista[randomIndex];
-
-            quoteText.textContent = fraseObj.frase || 'Não foi possível carregar a frase.';
-            quoteAuthor.textContent = fraseObj.nomeAutor 
-                ? `— ${fraseObj.nomeAutor}` 
-                : '— Autor desconhecido';
+            // conselho vem em inglês, você pode deixar claro isso se quiser
+            quoteText.textContent = advice;
+            quoteAuthor.textContent = '— Advice Slip API (EN)';
         })
         .catch(error => {
-            console.error('Erro ao buscar frase da API:', error);
-            quoteText.textContent = 'Erro ao carregar a frase da API.';
+            console.error('Erro ao buscar conselho da API:', error);
+            quoteText.textContent = 'Erro ao carregar o conselho da API.';
             quoteAuthor.textContent = '';
         });
 }
