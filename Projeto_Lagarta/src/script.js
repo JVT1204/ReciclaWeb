@@ -257,9 +257,10 @@ function goToSlide(slideIndex) {
     }
 }
 
-//// ========================================
+// ========================================
 // API DE CONSELHOS (https://api.adviceslip.com/advice)
 // ========================================
+
 function loadQuoteFromApi() {
     const quoteText = document.getElementById('quote-text');
     const quoteAuthor = document.getElementById('quote-author');
@@ -269,17 +270,28 @@ function loadQuoteFromApi() {
     quoteText.textContent = 'Carregando conselho...';
     quoteAuthor.textContent = '';
 
-    fetch('https://api.adviceslip.com/advice', {
-        cache: 'no-cache'
-    })
-        .then(response => response.json())
+    fetch('https://api.adviceslip.com/advice', { cache: 'no-cache' })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro HTTP: ' + response.status);
+            }
+            return response.json();
+        })
         .then(data => {
-            const advice = data.slip.advice;
+            const slip = data.slip;
+            const advice = slip && slip.advice ? slip.advice : null;
+
+            if (!advice) {
+                quoteText.textContent = 'Não foi possível carregar o conselho.';
+                quoteAuthor.textContent = '';
+                return;
+            }
+
             quoteText.textContent = advice;
-            quoteAuthor.textContent = '— AdviceSlip API (EN)';
+            quoteAuthor.textContent = '— Advice Slip API (EN)';
         })
         .catch(error => {
-            console.error('Erro ao buscar conselho:', error);
+            console.error('Erro ao buscar conselho da API:', error);
             quoteText.textContent = 'Erro ao carregar o conselho da API.';
             quoteAuthor.textContent = '';
         });
