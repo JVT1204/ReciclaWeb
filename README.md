@@ -181,6 +181,20 @@ export default async function FasePage({ params }) {
 
 Mesmo o jogo tendo apenas uma fase real, a rota dinâmica foi incluída para mostrar domínio do App Router, cumprir o requisito da professora e deixar o projeto preparado para futuras expansões.
 
+**##6. API/frases – API de Frases Ambientais**
+
+A rota /api/frases é a responsável por fornecer frases ambientais aleatórias para a página inicial.No Next.js (App Router), ela funciona como um pequeno servidor interno que retorna dados em formato JSON.O arquivo route.js define uma rota de API no Next.js.
+Ele permite que o frontend faça requisições usando:fetch('/api/frases')e receba frases prontas para exibir na interface.
+ Principais Responsabilidades
+GET:
+Retorna um JSON contendo uma lista de frases ambientais.
+Cada frase contém: o texto motivacional ambiental
+
+Como o frontend usa essa API
+Na Home (app/page.tsx):Um useEffect() faz a requisição automaticamente ao carregar a página.A resposta é lida com .json().Uma frase aleatória é selecionada.O texto e o autor são exibidos na seção de “💬 Conselhos ambientais”.
+Isso adiciona conteúdo dinâmico real ao site, tornando-o mais interativo.
+
+
 ## 7. Conclusão e Aprendizados
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O ReciclaWeb representa uma jornada de aprendizado e aplicação prática de tecnologias web front-end (HTML5, CSS3, JavaScript). Desde a ideação, passando pelo desenvolvimento de protótipos e a implementação final, o foco sempre esteve em criar uma ferramenta educativa e interativa que pudesse engajar a comunidade na causa da coleta seletiva. As refatorações contínuas, visando a semântica do HTML e a otimização do CSS, não apenas aprimoraram a manutenibilidade do código, mas também reforçaram a importância de boas práticas de desenvolvimento.
