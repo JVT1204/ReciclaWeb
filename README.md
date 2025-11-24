@@ -157,7 +157,7 @@ Obs: Há comentários dentro dos códigos para melhor entendimento
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ao seguir essa abordagem e consultar os comentários adicionados, você terá uma compreensão sólida de como o ReciclaWeb funciona e estará bem equipado para replicá-lo ou adaptá-lo às suas próprias necessidades.
 
-##5. api/frases – API de Frases Ambientais
+**##5. api/frases – API de Frases Ambientais**
 
 A rota /api/frases é a responsável por fornecer frases ambientais aleatórias para a página inicial.No Next.js (App Router), ela funciona como um pequeno servidor interno que retorna dados em formato JSON.O arquivo route.js define uma rota de API no Next.js.
 Ele permite que o frontend faça requisições usando:fetch('/api/frases')e receba frases prontas para exibir na interface.
