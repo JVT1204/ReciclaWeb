@@ -14,11 +14,11 @@ const imageCache: Record<string, string> = {};
 export async function fetchImage(query: string): Promise<string> {
   // Check if we already have this image in cache
   if (imageCache[query]) {
-    return imageCache[query];
+    return imageCache[query]
   }
 
   try {
-    if (!PEXELS_API_KEY) {
+    if (!PEXELS_API_KEY) {z
       throw new Error('Pexels API key is not configured');
     }
 

@@ -29,8 +29,7 @@ export default function RootLayout({ children }) {
     <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
-        {process.env.NODE_ENV === 'development' && <TestApi />}
-      </body>
+     </body>
     </html>
   );
 }

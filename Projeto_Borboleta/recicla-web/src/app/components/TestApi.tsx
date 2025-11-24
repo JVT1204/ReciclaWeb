@@ -1,50 +1,41 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { fetchImage } from '../config/api';
+import { useState } from 'react';
 
-export function TestApi() {
-  const [imageUrl, setImageUrl] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+export default function TestApi() {
+  const [frases, setFrases] = useState<any[]>([]);
+  const [erro, setErro] = useState<string | null>(null);
 
-  useEffect(() => {
-    const testApi = async () => {
-      try {
-        setLoading(true);
-        const url = await fetchImage('plastic bottle');
-        setImageUrl(url);
-        setError('');
-      } catch (err) {
-        console.error('API Test Error:', err);
-        setError(`Error: ${err instanceof Error ? err.message : 'Unknown error'}`);
-      } finally {
-        setLoading(false);
+  async function testarApi() {
+    try {
+      setErro(null);
+      const resp = await fetch('/api/frases');
+      if (!resp.ok) {
+        throw new Error('Erro na resposta da API');
       }
-    };
-
-    testApi();
-  }, []);
+      const data = await resp.json();
+      setFrases(data.frases || []);
+    } catch (e: any) {
+      setErro(e.message || 'Erro ao chamar a API');
+    }
+  }
 
   return (
-    <div className="fixed bottom-4 right-4 bg-white p-4 rounded-lg shadow-lg max-w-xs">
-      <h3 className="font-bold mb-2">API Test</h3>
-      {loading && <p>Testing API connection...</p>}
-      {error && <p className="text-red-500">{error}</p>}
-      {imageUrl && (
-        <div>
-          <p className="text-green-600">API is working! 🎉</p>
-          <img 
-            src={imageUrl} 
-            alt="Test from Pexels" 
-            className="mt-2 rounded w-full h-32 object-cover"
-          />
-        </div>
-      )}
-      {!process.env.NEXT_PUBLIC_PEXELS_API_KEY && (
-        <p className="text-yellow-600 mt-2">
-          Warning: NEXT_PUBLIC_PEXELS_API_KEY is not set in .env.local
-        </p>
+    <div style={{ marginTop: '20px' }}>
+      <button onClick={testarApi}>
+        Testar API de Frases
+      </button>
+
+      {erro && <p>Erro: {erro}</p>}
+
+      {frases.length > 0 && (
+        <ul>
+          {frases.map((f) => (
+            <li key={f.id}>
+              {f.frase} — <strong>{f.autor}</strong>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
