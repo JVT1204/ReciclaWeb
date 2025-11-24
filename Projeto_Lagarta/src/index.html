@@ -8,49 +8,42 @@
 </head>
 <body>
     <div class="container">
-        <!-- HEADER -->
+
         <header class="header">
-            <a href="#" class="logo" onclick="showScreen('home')">
-                ♻️ ReciclaWeb
-            </a>
-            
-            <!-- Botão de toggle para o menu "hambúrguer" -->
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                ☰
-            </button>
-            
+            <a href="#" class="logo" onclick="showScreen('home')">♻️ ReciclaWeb</a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
             <nav class="nav" id="mainNav">
-                <a href="#" class="nav-link active" aria-current="page" role="button" onclick="showScreen('home')">
-                    🏠 Home
-                </a>
-                <a href="#" class="nav-link" role="button" onclick="showScreen('game')">
-                    🎮 Jogue Agora
-                </a>
-                <a href="#" class="nav-link" role="button" onclick="showScreen('team')">
-                    👥 Desenvolvedores
-                </a>
+                <a href="#home" class="nav-link" aria-current="page">🏠 Home</a>
+                <a href="#game" class="nav-link">🎮 Jogue Agora</a>
+                <a href="#team" class="nav-link">👥 Desenvolvedores</a>
             </nav>
         </header>
 
-        <!-- MAIN: Conteúdo principal da página, onde as diferentes telas são exibidas -->
         <main id="mainContent">
-        <!-- TELA HOME -->
-        <section id="home" class="screen home-screen active section">
+
+            <!-- HOME -->
+            <section id="home" class="screen home-screen active section">
                 <h1 class="section-title">🗂️ Conheça os Tipos de Lixo</h1>
                 <p class="section-subtitle">
                     Navegue pelas categorias e aprenda a separar corretamente cada resíduo para contribuir com um planeta mais sustentável
                 </p>
+
+                <!-- FRASE DA API -->
+               <section class="api-quote">
+                   <h2>💬 Conselho ambiental</h2>
+                   <p id="quote-text">Clique no botão para carregar um conselho.</p>
+                   <p id="quote-author"></p>
+                   <button type="button" onclick="loadQuoteFromApi()">🔄 Novo conselho</button>
+               </section>
+
                 
-                <!-- CAROUSEL CONTAINER: Contém o carrossel de tipos de lixo e seus controles -->
+                <!-- CARROSSEL -->
                 <div class="carousel-container">
                     <button class="carousel-nav prev" type="button" aria-label="Slide anterior" onclick="previousSlide()">‹</button>
                     <button class="carousel-nav next" type="button" aria-label="Próximo slide" onclick="nextSlide()">›</button>
                     
-                    <div class="carousel-wrapper">
-                        <!-- Slides serão criados dinamicamente pelo JavaScript -->
-                    </div>
+                    <div class="carousel-wrapper"></div>
                     
-                    <!-- INDICATORS: Indicadores de slide para navegação direta -->
                     <div class="indicators">
                         <span class="indicator active" onclick="goToSlide(0)"></span>
                         <span class="indicator" onclick="goToSlide(1)"></span>
@@ -60,28 +53,22 @@
                     </div>
                 </div>
 
-                <!-- CTA SECTION: Seção de "Call to Action" para iniciar o jogo -->
+                <!-- CTA -->
                 <section class="cta-section">
                     <h3 style="color: #2E7D32; margin-bottom: 1rem;">Pronto para testar seus conhecimentos?</h3>
                     <p style="margin-bottom: 1.5rem;">Agora que você aprendeu sobre os tipos de resíduos, que tal um desafio divertido?</p>
-                    <!-- Botão para navegar até a tela do jogo -->
-                    <button class="btn" onclick="showScreen('game')">
-                        🎯 Jogar Agora!
-                    </button>
+                    <button class="btn" onclick="showScreen('game')">🎯 Jogar Agora!</button>
                 </section>
             </section>
-        </section>
 
-        <!-- TELA JOGO -->
-        <section id="game" class="screen game-screen section">
+            <!-- GAME -->
+            <section id="game" class="screen game-screen section">
                 <h1 class="section-title" id="gameTitle">🎯 Desafio da Separação</h1>
                 <p class="section-subtitle">
                     Teste seus conhecimentos! Clique na lixeira correta para cada resíduo e ganhe pontos
                 </p>
                 
-                <!-- GAME CONTAINER: Contém a interface do jogo -->
                 <div class="game-container">
-                    <!-- SCORE BOARD: Exibe a pontuação atual do jogador -->
                     <div class="score-board">
                         <div class="score">
                             <span>Pontuação: <strong>0 / 10</strong></span>
@@ -90,7 +77,6 @@
                         <p style="margin-top: 0.5rem; color: #666;">Acerte o máximo de separações possíveis!</p>
                     </div>
                     
-                    <!-- GAME AREA: Área principal do jogo com o item de lixo e as lixeiras -->
                     <div class="game-area">
                         <h3 style="color: #2E7D32; margin-bottom: 1rem;">Item Atual</h3>
                         
@@ -101,7 +87,6 @@
                             </p>
                         </div>
                         
-                        <!-- BINS CONTAINER: Contém as lixeiras para classificação dos resíduos -->
                         <div class="bins-container">
                             <div class="bin plastico" data-type="plastico">
                                 <div class="bin-label">PLÁSTICO</div>
@@ -120,37 +105,25 @@
                             </div>
                         </div>
 
-                        <!-- GAME CONTROLS: Botões de controle do jogo -->
                         <div class="game-controls">
-                            <button class="btn-secondary" type="button" onclick="newItem()">
-                                🔄 Novo Item
-                            </button>
-                            <button class="btn-secondary" type="button" onclick="showStats()">
-                                📊 Estatísticas
-                            </button>
-                            <button class="btn" type="button" onclick="showScreen('home')">
-                                🏠 Voltar ao Início
-                            </button>
+                            <button class="btn-secondary" type="button" onclick="newItem()">🔄 Novo Item</button>
+                            <button class="btn-secondary" type="button" onclick="showStats()">📊 Estatísticas</button>
+                            <button class="btn" type="button" onclick="showScreen('home')">🏠 Voltar ao Início</button>
                         </div>
                     </div>
                 </div>
             </section>
-        </section>
 
-        <!-- TELA EQUIPE -->
-        <section id="team" class="screen team-screen section">
-                <!-- TEAM INTRO: Introdução à seção dos desenvolvedores -->
+            <!-- TEAM -->
+            <section id="team" class="screen team-screen section">
                 <div class="team-intro">
                     <h1 class="section-title" id="teamTitle">👥 Desenvolvedores</h1>
-                    <p class="section-subtitle">
-                        Conheça quem pensou e criou o ReciclaWeb
-                    </p>
+                    <p class="section-subtitle">Conheça quem pensou e criou o ReciclaWeb</p>
                     <div class="team-quote">
                         "Juntos por uma educação ambiental mais acessível e divertida para toda a comunidade!"
                     </div>
                 </div>
 
-                <!-- TEAM MEMBERS: Cartões de cada membro da equipe -->
                 <div class="team-members">
                     <article class="member-card">
                         <div class="member-avatar">👨‍💻</div>
@@ -166,6 +139,7 @@
                         <div class="member-role">Frontend Developer</div>
                     </article>
                 </div>
+
                 <section class="project-info">
                     <h3>📋 Informações do Projeto</h3>
                     
@@ -187,9 +161,9 @@
                     <section class="project-mission">
                         <h4 style="color: #2E7D32; margin-bottom: 1rem;">🎯 Missão do Projeto</h4>
                         <p style="font-size: 1.1rem; line-height: 1.8;">
-                            Promover <strong>educação ambiental</strong> através de tecnologia acessível e interativa, 
-                            contribuindo para formar uma comunidade mais consciente sobre a importância da 
-                            <strong>coleta seletiva</strong> e do <strong>descarte responsável de resíduos</strong>.
+                            Promover <strong>educação ambiental</strong> através de tecnologia acessível e interativa,
+                            contribuindo para formar uma comunidade mais consciente sobre a importância da
+                            <strong>coleta seletiva</strong> e do <strong>descarte responsável</strong>.
                         </p>
                     </section>
 
@@ -201,11 +175,15 @@
                     </a>
                 </section>
             </section>
-        </section>
+
         </main>
+
     </div>
     
     <script src="./script.js"></script>
+</body>
+</html>
+
 
 </body>
 </html>

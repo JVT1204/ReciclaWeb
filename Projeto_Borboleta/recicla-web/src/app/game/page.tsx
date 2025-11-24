@@ -1,179 +1,149 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Header from '../components/Header';
-import { GameItemDisplay } from '../components/GameItemDisplay';
-import { gameData, MAX_GAME_SCORE } from '../data/trashCategories';
-import { GameItem } from '../types';
 
-export default function Game() {
-  const [gameScore, setGameScore] = useState(0);
-  const [currentItem, setCurrentItem] = useState<GameItem | null>(null);
-  const [gameItems, setGameItems] = useState<GameItem[]>([]);
-  const [feedback, setFeedback] = useState<{ message: string; isCorrect: boolean } | null>(null);
+type Categoria = 'plastico' | 'papel' | 'vidro' | 'metal' | 'organico';
+
+type ItemLixo = {
+  id: number;
+  nome: string;
+  emoji: string;
+  categoria: Categoria;
+};
+
+const ITENS: ItemLixo[] = [
+  { id: 1, nome: 'Garrafa PET', emoji: '🥤', categoria: 'plastico' },
+  { id: 2, nome: 'Sacola plástica', emoji: '🛍️', categoria: 'plastico' },
+  { id: 3, nome: 'Revista velha', emoji: '📖', categoria: 'papel' },
+  { id: 4, nome: 'Caixa de papelão', emoji: '📦', categoria: 'papel' },
+  { id: 5, nome: 'Garrafa de vidro', emoji: '🍾', categoria: 'vidro' },
+  { id: 6, nome: 'Pote de conserva', emoji: '🥫', categoria: 'vidro' },
+  { id: 7, nome: 'Lata de alumínio', emoji: '🥤', categoria: 'metal' },
+  { id: 8, nome: 'Lata de milho', emoji: '🥫', categoria: 'metal' },
+  { id: 9, nome: 'Casca de banana', emoji: '🍌', categoria: 'organico' },
+  { id: 10, nome: 'Restos de comida', emoji: '🍽️', categoria: 'organico' },
+];
+
+const BINS: { categoria: Categoria; label: string; icon: string }[] = [
+  { categoria: 'plastico', label: 'PLÁSTICO', icon: '🥤' },
+  { categoria: 'papel', label: 'PAPEL', icon: '📄' },
+  { categoria: 'vidro', label: 'VIDRO', icon: '🍶' },
+  { categoria: 'metal', label: 'METAL', icon: '🥫' },
+  { categoria: 'organico', label: 'ORGÂNICO', icon: '🍌' },
+];
+
+export default function GamePage() {
+  const [score, setScore] = useState(0);
+  const [erros, setErros] = useState(0);
+  const [itemAtual, setItemAtual] = useState<ItemLixo | null>(null);
+  const [mensagem, setMensagem] = useState<string>('');
+
+  function sortearItem() {
+    const idx = Math.floor(Math.random() * ITENS.length);
+    setItemAtual(ITENS[idx]);
+    setMensagem('');
+  }
+
+  function reiniciarJogo() {
+    setScore(0);
+    setErros(0);
+    sortearItem();
+  }
+
+  function handleEscolha(categoriaEscolhida: Categoria) {
+    if (!itemAtual) return;
+
+    if (categoriaEscolhida === itemAtual.categoria) {
+      setScore((antigo) => antigo + 1);
+      setMensagem('✅ Muito bem! Você separou o lixo corretamente.');
+    } else {
+      setErros((antigo) => antigo + 1);
+      setMensagem('❌ Ops! Esse lixo deveria ir para outra lixeira.');
+    }
+
+    // Sorteia próximo item depois de um tempinho
+    setTimeout(() => {
+      sortearItem();
+    }, 900);
+  }
 
   useEffect(() => {
-    initializeGame();
+    sortearItem();
   }, []);
 
-  const initializeGame = () => {
-    setGameScore(0);
-    setGameItems([...gameData]);
-    newItem();
-  };
-
-  const newItem = () => {
-    if (gameScore === MAX_GAME_SCORE) {
-      showMaxScoreFeedback();
-      return;
-    }
-
-    let availableItems = gameItems.length > 0 ? gameItems : [...gameData];
-    
-    const randomIndex = Math.floor(Math.random() * availableItems.length);
-    const selectedItem = availableItems[randomIndex];
-    
-    setCurrentItem(selectedItem);
-    setGameItems(prev => prev.filter((_, index) => index !== randomIndex));
-  };
-
-  const checkAnswer = (selectedBinType: string) => {
-    if (!currentItem) return;
-    
-    if (selectedBinType === currentItem.type) {
-      setGameScore(prev => prev + 1);
-      showFeedback(`✅ Correto! ${currentItem.name} vai para a lixeira ${currentItem.type}!`, true);
-    } else {
-      showFeedback(`❌ Errado! ${currentItem.name} deveria ir para a lixeira ${currentItem.type}.`, false);
-    }
-    
-    setTimeout(() => {
-      newItem();
-    }, 2000);
-  };
-
-  const showFeedback = (message: string, isCorrect: boolean) => {
-    setFeedback({ message, isCorrect });
-    setTimeout(() => {
-      setFeedback(null);
-    }, 2000);
-  };
-
-  const showMaxScoreFeedback = () => {
-    showFeedback('🎉 Parabéns! Você atingiu a pontuação máxima de reciclagem!', true);
-    setTimeout(() => {
-      initializeGame();
-    }, 3000);
-  };
-
-  const showStats = () => {
-    const percentage = Math.round((gameScore / MAX_GAME_SCORE) * 100);
-    const message = `📊 Sua pontuação: ${gameScore}/${MAX_GAME_SCORE} (${percentage}%)\n\n`;
-    
-    let performance = '';
-    if (percentage >= 90) {
-      performance = '🌟 Excelente! Você é um expert em reciclagem!';
-    } else if (percentage >= 70) {
-      performance = '👍 Muito bom! Continue praticando!';
-    } else if (percentage >= 50) {
-      performance = '📚 Bom começo! Estude mais sobre reciclagem.';
-    } else {
-      performance = '💪 Não desista! Pratique mais e você vai melhorar!';
-    }
-    
-    alert(message + performance);
-  };
-
-  const bins = [
-    { type: 'plastico', label: 'PLÁSTICO', emoji: '♻️' },
-    { type: 'papel', label: 'PAPEL', emoji: '📄' },
-    { type: 'vidro', label: 'VIDRO', emoji: '🥛' },
-    { type: 'metal', label: 'METAL', emoji: '🔩' },
-    { type: 'organico', label: 'ORGÂNICO', emoji: '🍌' }
-  ];
-
-  // If no current item and not showing feedback, we're initializing
-  const isInitializing = !currentItem && !feedback;
-
   return (
-    <div className="container">
-      <Header />
-      <main id="mainContent">
-        <section id="game" className="screen game-screen active section">
-          <h1 className="section-title" id="gameTitle">🎯 Desafio da Separação</h1>
-          <p className="section-subtitle">
-            Teste seus conhecimentos! Clique na lixeira correta para cada resíduo e ganhe pontos
-          </p>
-          
-          <div className="game-container">
-            <div className="score-board mb-6">
-              <div className="score bg-white bg-opacity-90 rounded-full px-6 py-2 shadow-md">
-                <span className="text-lg font-semibold">Pontuação: <strong className="text-green-600">{gameScore} / {MAX_GAME_SCORE}</strong></span>
-              </div>
-            </div>
+    <div className="container game-screen">
+      {/* HEADER IGUAL DO SITE */}
+      <header className="header">
+        <a href="/" className="logo">
+          ♻️ ReciclaWeb
+        </a>
+      </header>
 
-            <div className="current-item mb-8">
-              {currentItem && (
-                <div className="item-display bg-white bg-opacity-90 rounded-xl p-6 shadow-lg">
-                  <div className="flex flex-col items-center">
-                    <GameItemDisplay item={currentItem} className="mb-4" />
-                    <p className="item-name text-xl font-medium text-gray-800 mt-2">{currentItem.name}</p>
+      <main className="section">
+        <div className="game-container">
+          <h1 className="section-title">🎮 Jogo da Reciclagem</h1>
+          <p className="section-subtitle">
+            Arraste mentalmente o objeto para a lixeira correta . Clique na categoria certa e veja se acertou!
+          </p>
+
+          {/* PLACAR */}
+          <div className="score-board">
+            <div className="score">
+              <span>✅ Acertos: {score}</span>
+              <span>❌ Erros: {erros}</span>
+            </div>
+          </div>
+
+          {/* ÁREA DO JOGO */}
+          <div className="game-area">
+            <h2>Qual é o destino correto desse resíduo?</h2>
+
+            <div className="current-item">
+              {itemAtual && (
+                <>
+                  <div className="trash-item">
+                    <span>{itemAtual.emoji}</span>
                   </div>
-                </div>
+                  <p style={{ marginTop: '1rem', fontSize: '1.1rem' }}>
+                    {itemAtual.nome}
+                  </p>
+                </>
               )}
             </div>
 
-            <div className="bins grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-              {bins.map((bin) => (
+            <div className="bins-container">
+              {BINS.map((bin) => (
                 <button
-                  key={bin.type}
-                  className={`bin ${bin.type} flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${!currentItem ? 'opacity-50 cursor-not-allowed' : 'hover:bg-opacity-90'}`}
-                  onClick={() => checkAnswer(bin.type)}
-                  disabled={!currentItem}
+                  key={bin.categoria}
+                  type="button"
+                  className={`bin ${bin.categoria}`}
+                  onClick={() => handleEscolha(bin.categoria)}
                 >
-                  <div className="text-4xl mb-2">{bin.emoji}</div>
-                  <span className="font-medium">{bin.label}</span>
+                  <div className="bin-icon">{bin.icon}</div>
+                  <div className="bin-label">{bin.label}</div>
                 </button>
               ))}
             </div>
 
+            {mensagem && (
+              <p style={{ marginTop: '1rem', fontWeight: 600 }}>{mensagem}</p>
+            )}
+
             <div className="game-controls">
-              <button className="btn-secondary" type="button" onClick={newItem}>
-                🔄 Novo Item
+              <button type="button" className="btn-secondary" onClick={reiniciarJogo}>
+                🔁 Reiniciar jogo
               </button>
-              <button className="btn-secondary" type="button" onClick={showStats}>
-                📊 Estatísticas
-              </button>
-              <Link href="/" className="btn">
-                🏠 Voltar ao Início
-              </Link>
+              <a href="/" className="btn-secondary">
+                ⬅️ Voltar para a Home
+              </a>
+              <a href="/team" className="btn-secondary">
+                👥 Ver equipe
+              </a>
             </div>
           </div>
-        </section>
-      </main>
-
-      {feedback && (
-        <div 
-          style={{
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            background: 'white',
-            padding: '1rem 2rem',
-            borderRadius: '10px',
-            boxShadow: '0 5px 20px rgba(0,0,0,0.3)',
-            zIndex: 1000,
-            fontSize: '1.1rem',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            color: feedback.isCorrect ? '#2E7D32' : '#F44336'
-          }}
-        >
-          {feedback.message}
         </div>
-      )}
+      </main>
     </div>
   );
 }

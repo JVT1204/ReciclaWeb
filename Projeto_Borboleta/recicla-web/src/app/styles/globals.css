@@ -29,3 +29,80 @@ a {
     color-scheme: dark;
   }
 }
+.api-frases-container {
+  margin: 24px auto;
+  max-width: 800px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.api-frases-titulo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1b5e20;
+}
+
+.api-frases-botao {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  background-color: #2e7d32;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+}
+
+.api-frases-botao:hover {
+  background-color: #1b5e20;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.api-frases-erro {
+  margin-top: 12px;
+  color: #b91c1c;
+  font-weight: 500;
+  background-color: #fee2e2;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.api-frases-lista {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.api-frases-item {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.api-frases-texto {
+  flex: 1 1 100%;
+  font-size: 0.96rem;
+  color: #1f2933;
+}
+
+.api-frases-autor {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
