@@ -942,3 +942,147 @@ body.menu-open {
         padding: 2rem 1.5rem;
     }
 }
+/* ========================================
+   CARDS DE CATEGORIAS NA HOME
+======================================== */
+
+.categories {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.category {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+.categoryIcon {
+    font-size: 2.4rem;
+    margin-bottom: 0.6rem;
+}
+
+.category h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    color: #2E7D32;
+}
+
+.category p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* CTA da home abaixo dos cards */
+.cta-home {
+    margin-top: 3rem;
+    text-align: center;
+}
+.api-quote {
+    background: rgba(200, 230, 201, 0.4);
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid #4CAF50;
+    margin: 2.5rem 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.api-quote h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #2E7D32;
+    margin-bottom: 1rem;
+}
+
+#quote-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+#quote-author {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #1B5E20;
+    margin-bottom: 1rem;
+}
+
+.api-quote .button, 
+.api-quote .btn {
+    margin-top: 1rem;
+}
+/* BLOCO DA FRASE NA HOME */
+.api-quote {
+    background: #E8F5E9;
+    padding: 2.2rem 2.5rem;
+    border-radius: 20px;
+    border: 1px solid #C8E6C9;
+    margin: 2.5rem 0 3rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.api-quote h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #2E7D32;
+    margin-bottom: 1rem;
+}
+
+#quote-text {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #444;
+    margin-bottom: 0.5rem;
+}
+
+#quote-author {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1B5E20;
+    margin-bottom: 1.4rem;
+}
+
+/* CTA – BLOCO DO "JOGAR AGORA" */
+.cta-home {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    padding: 2.2rem 2.5rem;
+    text-align: center;
+    background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid #A5D6A7;
+}
+
+.cta-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1B5E20;
+    margin-bottom: 0.5rem;
+}
+
+.cta-subtitle {
+    font-size: 1rem;
+    color: #455A64;
+    margin-bottom: 1.6rem;
+}
+
+/* botão maior para o CTA */
+.btn-lg {
+    font-size: 1.05rem;
+    padding: 1.1rem 2.6rem;
+}

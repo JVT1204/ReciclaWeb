@@ -2,8 +2,14 @@
 
 import { useState } from 'react';
 
+type Frase = {
+  id: number;
+  frase: string;
+  autor: string;
+};
+
 export default function TestApi() {
-  const [frases, setFrases] = useState<any[]>([]);
+  const [frases, setFrases] = useState<Frase[]>([]);
   const [erro, setErro] = useState<string | null>(null);
 
   async function testarApi() {
@@ -21,22 +27,25 @@ export default function TestApi() {
   }
 
   return (
-    <div style={{ marginTop: '20px' }}>
-      <button onClick={testarApi}>
-        Testar API de Frases
+    <section className="api-frases-container">
+      <h3 className="api-frases-titulo">Debug da API de Frases</h3>
+
+      <button className="button" onClick={testarApi}>
+        📡 Testar API
       </button>
 
-      {erro && <p>Erro: {erro}</p>}
+      {erro && <p className="api-frases-erro">Erro: {erro}</p>}
 
       {frases.length > 0 && (
-        <ul>
+        <ul className="api-frases-lista">
           {frases.map((f) => (
-            <li key={f.id}>
-              {f.frase} — <strong>{f.autor}</strong>
+            <li className="api-frases-item" key={f.id}>
+              <span className="api-frases-texto">{f.frase}</span>
+              <span className="api-frases-autor">— {f.autor}</span>
             </li>
           ))}
         </ul>
       )}
-    </div>
+    </section>
   );
 }

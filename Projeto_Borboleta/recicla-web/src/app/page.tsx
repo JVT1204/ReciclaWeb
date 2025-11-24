@@ -1,9 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import TestApi from './components/TestApi';  
-
-
+import Link from 'next/link';
 
 export default function Home() {
   const [frase, setFrase] = useState('Clique no botão para carregar uma frase.');
@@ -58,26 +56,30 @@ export default function Home() {
 
         {/* HOME CONTENT */}
         <section className="content">
-          <h2 className="title">🗂️ Conheça os Tipos de Lixo</h2>
+          <h2 className="title">📁 Conheça os Tipos de Lixo</h2>
           <p className="description">
             Navegue pelas categorias e aprenda a separar corretamente cada resíduo
             para contribuir com um planeta mais sustentável.
           </p>
 
-          {/* API DE FRASES */}
+          {/* BLOCO DA FRASE */}
           <section className="api-quote">
-            <h2>💬 Frase inspiradora sobre atitudes</h2>
+            <h2>💬 Conselhos ambientais</h2>
+
             <p id="quote-text">{frase}</p>
             <p id="quote-author">{autor}</p>
-            <button type="button" className="button" onClick={carregarFrase}>
+
+            <button
+              type="button"
+              className="btn"
+              onClick={carregarFrase}
+            >
               🔄 Nova frase
             </button>
-            <TestApi />
           </section>
 
           {/* TIPOS DE LIXO */}
           <div className="categories">
-
             <div className="category">
               <div className="categoryIcon">🥤</div>
               <h3>PLÁSTICO</h3>
@@ -107,14 +109,19 @@ export default function Home() {
               <h3>ORGÂNICO</h3>
               <p>Restos de comida, cascas de frutas</p>
             </div>
-
           </div>
 
-          {/* CTA */}
-          <div className="cta">
-            <button className="button">
+          {/* CTA BONITÃO */}
+          <div className="cta-home">
+            <h3 className="cta-title">Pronto para colocar em prática o que aprendeu?</h3>
+            <p className="cta-subtitle">
+              Clique no botão abaixo e teste seus conhecimentos no jogo da reciclagem.
+            </p>
+
+            {/* ROTA DINÂMICA: /game/ */}
+            <Link href="/game/" className="btn btn-lg">
               🎯 Jogar Agora!
-            </button>
+            </Link>
           </div>
         </section>
 
