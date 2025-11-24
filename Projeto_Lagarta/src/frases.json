@@ -2,7 +2,11 @@
   "frases": [
     {
       "frase": "Cada atitude conta: recicle hoje para viver melhor amanhã.",
+<<<<<<< HEAD
       "autor": "Sustentabilidade Já"
+=======
+      "autor": "Projeto ReciclaWeb"
+>>>>>>> 0ac3e75f633cfac0b971c0beead44cf42f4d8a7e
     },
     {
       "frase": "Separar o lixo é um pequeno gesto com um grande impacto no planeta.",
@@ -14,7 +18,11 @@
     },
     {
       "frase": "Reciclar é transformar o que seria lixo em novas possibilidades.",
+<<<<<<< HEAD
       "autor": "Consciência Coletiva"
+=======
+      "autor": "Projeto Lagarta"
+>>>>>>> 0ac3e75f633cfac0b971c0beead44cf42f4d8a7e
     },
     {
       "frase": "Cuidar do meio ambiente é cuidar da nossa própria casa.",
@@ -26,7 +34,11 @@
     },
     {
       "frase": "Recusar, reduzir, reutilizar e reciclar: quatro passos para um planeta melhor.",
+<<<<<<< HEAD
       "autor": "Educação Ambiental"
+=======
+      "autor": "ReciclaWeb"
+>>>>>>> 0ac3e75f633cfac0b971c0beead44cf42f4d8a7e
     }
   ]
 }
