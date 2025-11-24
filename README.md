@@ -157,7 +157,31 @@ Obs: Há comentários dentro dos códigos para melhor entendimento
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ao seguir essa abordagem e consultar os comentários adicionados, você terá uma compreensão sólida de como o ReciclaWeb funciona e estará bem equipado para replicá-lo ou adaptá-lo às suas próprias necessidades.
 
-## 5. Conclusão e Aprendizados
+**##5.Rotas dinamicas**
+O projeto utiliza uma rota dinâmica no Next.js para demonstrar o uso de parâmetros na URL, conforme os requisitos da disciplina. 
+A rota foi criada em:
+
+src/app/fase/[id]/page.tsx
+
+O nome [id] indica que essa parte da URL é variável.
+Assim, qualquer endereço como:
+
+/fase/1
+/fase/2
+/fase/teste
+
+acessa a mesma página, exibindo o valor recebido pela URL.
+
+O componente é assíncrono porque o Next envia params como uma Promise:
+
+export default async function FasePage({ params }) {
+  const { id } = await params;
+  return <p>Fase {id} do Jogo</p>;
+}
+
+Mesmo o jogo tendo apenas uma fase real, a rota dinâmica foi incluída para mostrar domínio do App Router, cumprir o requisito da professora e deixar o projeto preparado para futuras expansões.
+
+## 7. Conclusão e Aprendizados
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O ReciclaWeb representa uma jornada de aprendizado e aplicação prática de tecnologias web front-end (HTML5, CSS3, JavaScript). Desde a ideação, passando pelo desenvolvimento de protótipos e a implementação final, o foco sempre esteve em criar uma ferramenta educativa e interativa que pudesse engajar a comunidade na causa da coleta seletiva. As refatorações contínuas, visando a semântica do HTML e a otimização do CSS, não apenas aprimoraram a manutenibilidade do código, mas também reforçaram a importância de boas práticas de desenvolvimento.
 
